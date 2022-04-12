@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+// import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.sol";
 import "./getPlayerSvg.sol";
 
 
@@ -11,7 +13,8 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 
 
-contract SVG is ERC1155 {
+contract SVG is ERC1155PresetMinterPauser {
+// contract SVG is ERC1155 {
 
     getPlayerSvg getPlayer;
     using Strings for uint; // Allows to convert uints to strings
@@ -32,11 +35,13 @@ contract SVG is ERC1155 {
 
 
     address ownerOfContract;
-    address contractOfMintingProcess;
-    constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
+    address[2] contractOfMintingProcess;
+
+    constructor(address _getPlayerSVG) ERC1155PresetMinterPauser("FC-Basel")  {
+    // constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
       getPlayer = getPlayerSvg(_getPlayerSVG); //0x570674c3f93208524F77967d1aA967FbDbD27198
       ownerOfContract = msg.sender;
-      contractOfMintingProcess = msg.sender;
+      contractOfMintingProcess[0] = msg.sender;
     }
 
     modifier onlyOwner() {
@@ -45,9 +50,10 @@ contract SVG is ERC1155 {
     }
 
     modifier mintingProcess() {
-        require(contractOfMintingProcess == msg.sender, "Not Owner of Contract");
+        require(contractOfMintingProcess[0] == msg.sender || contractOfMintingProcess[1] == msg.sender, "Not Owner of Contract");
         _;
     }
+
 
 
     function updateDesciption(string memory _img_description) external onlyOwner() {
@@ -58,8 +64,9 @@ contract SVG is ERC1155 {
       ownerOfContract = _newOwner;
     }
 
-    function changeMintingProcess(address _contractOfMintingProcess) external onlyOwner() {
-      contractOfMintingProcess = _contractOfMintingProcess;
+    function changeMintingProcess(address _contractOfMintingProcess, address __contractOfInterface) external onlyOwner() {
+      contractOfMintingProcess[0] = _contractOfMintingProcess;
+      contractOfMintingProcess[1] = __contractOfInterface;
     }
 
 
@@ -70,7 +77,7 @@ contract SVG is ERC1155 {
         //_mint(nftOwner, idx, numberOfPlayer, "");
       _mintBatch(nftOwner, idx, numberOfPlayer, "");
     }*/
-    function mintPlayer(uint idx, address nftOwner, uint numberOfPlayer) external mintingProcess() {
+    function mintPlayer(uint idx, address nftOwner, uint numberOfPlayer) external mintingProcess(){
       // requirement should be added that only player n%4 can be minted here
         _mint(nftOwner, idx, numberOfPlayer, "");
     }
@@ -80,7 +87,7 @@ contract SVG is ERC1155 {
 
 
 
-    function burnPlayer(uint _idx, address nftOwner, uint numberOfPlayer) external  {
+    function burnPlayer(uint _idx, address nftOwner, uint numberOfPlayer) external mintingProcess()  {
       _burn(nftOwner,_idx, numberOfPlayer);
     }
 

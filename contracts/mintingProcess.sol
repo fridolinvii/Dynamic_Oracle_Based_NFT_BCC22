@@ -45,6 +45,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
   uint256[] public s_randomWords;
   uint256 public s_requestId;
   address s_owner;
+  address interface_address;
 
 
   address[] minting;
@@ -55,17 +56,21 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
 
   constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
-    COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);  
+    COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
     svg = SVG(svg_address); // 0xd08A73a705070F394389a0656eDeF85D410c7d16
     // randNumber = translateNumber(translateNumber_address);
     s_owner = msg.sender;
+    interface_address = msg.sender;
     s_subscriptionId = subscriptionId;
   }
 
-  // Assumes the subscription is funded sufficiently.
-  function buyPlayer() external payable {
 
-    require(msg.value>price,"Insufficent Funds, please send more ETH.");
+
+  // Assumes the subscription is funded sufficiently.
+  // get Random number, if it arrives minting will start in fulfillRandomWords
+  function buyPlayer(address _newOwner, uint newPlayers) external  interfaceAddress() {
+
+
     // Will revert if subscription is not set and funded.
     s_requestId = COORDINATOR.requestRandomWords(
       keyHash,
@@ -76,29 +81,20 @@ contract mintingProcess is VRFConsumerBaseV2 {
     );
 
     // push new owner of NFT
-    minting.push(msg.sender);
-    
+    minting.push(_newOwner);
+
     // Compute automatically number of NFT bought, and return the rest
-    uint newPlayers = msg.value/price;
     numberOfPlayer.push(newPlayers);
-    if (newPlayers*price<msg.value) {
-      payable(msg.sender).transfer(msg.value-newPlayers*price);
-    }
-    accumaltedPayment += newPlayers*price;
 
 
 
   }
 
-  function withDraw(address _payout) external onlyOwner() {
-    require(accumaltedPayment>0,"No funds.");
-    payable(_payout).transfer(accumaltedPayment);
-    accumaltedPayment = 0;
-  }
 
 
 
   // Here the random number is given back
+  // After getting random number minting starts
   function fulfillRandomWords(
     uint256, /* requestId */
     uint256[] memory randomWords
@@ -111,8 +107,8 @@ contract mintingProcess is VRFConsumerBaseV2 {
     uint player2 = 0;
     uint player3 = 0;
     uint player4 = 0;
-        
-    for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {  
+
+    for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {
       uint idx = uint(keccak256(abi.encodePacked(randomWords[0],i))) % 5;
       // uint idx = randNumber.getRandomNumber(randomNumber,i,5);
       // This gives an error
@@ -131,8 +127,8 @@ contract mintingProcess is VRFConsumerBaseV2 {
     }
 
     uint[5] memory player = [player0,player1,player2,player3,player4];
-     
-  
+
+
     for (uint i = 0; i<player.length; i++){
       if (player[i]>0){
         svg.mintPlayer(i*4,minting[mintingCounter],player[i]);
@@ -143,11 +139,12 @@ contract mintingProcess is VRFConsumerBaseV2 {
   }
 
 
-  function mint() external {
+  // For Brownie: No VRF but simulates minting process
+  function buyPlayer_noVrf(address _newOwner, uint newPlayers) external interfaceAddress() {
 
-    minting.push(msg.sender);
-    numberOfPlayer.push(10);
-    uint randomNumber = 100;
+    minting.push(_newOwner);
+    numberOfPlayer.push(newPlayers);
+    uint randomNumber = block.timestamp;
 
 
 
@@ -156,8 +153,8 @@ contract mintingProcess is VRFConsumerBaseV2 {
     uint player2 = 0;
     uint player3 = 0;
     uint player4 = 0;
-        
-    for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {  
+
+    for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {
       uint idx = uint(keccak256(abi.encodePacked(randomNumber,i))) % 5;
       // uint idx = randNumber.getRandomNumber(randomNumber,i,5);
       // This gives an error
@@ -176,17 +173,35 @@ contract mintingProcess is VRFConsumerBaseV2 {
     }
 
     uint[5] memory player = [player0,player1,player2,player3,player4];
-     
-  
+
+
     for (uint i = 0; i<player.length; i++){
       if (player[i]>0){
         svg.mintPlayer(i*4,minting[mintingCounter],player[i]);
         }
     }
-    
+
 
     mintingCounter += 1;
 
+  }
+
+
+
+  // Access to contract
+
+  function changeInterfaceAddress(address _interface_address) external onlyOwner() {
+    interface_address = _interface_address;
+  }
+
+  function changeOwner(address newOwner) external onlyOwner() {
+    s_owner = newOwner;
+  }
+
+
+  modifier interfaceAddress() {
+    require(msg.sender == interface_address);
+    _;
   }
 
 
