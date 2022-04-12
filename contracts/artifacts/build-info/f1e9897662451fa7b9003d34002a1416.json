@@ -1,0 +1,67 @@
+{
+	"id": "f1e9897662451fa7b9003d34002a1416",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.7",
+	"solcLongVersion": "0.8.7+commit.e28d00a7",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/getRandomNumber.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.7;"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"sources": {
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/getRandomNumber.sol": {
+				"ast": {
+					"absolutePath": "Dynamic_Oracle_Based_NFT_BCC22/contracts/getRandomNumber.sol",
+					"exportedSymbols": {},
+					"id": 2,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".7"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:23:0"
+						}
+					],
+					"src": "32:23:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
