@@ -82,7 +82,7 @@ def main():
     # print("this should fail")
     # m.buyPlayer_noVrf(me, 100, {'from': me});
 
-    i.buyPlayer({'from': a1, 'amount':  '2 ether'})
+    i.buyPlayer({'from': a1, 'amount':  '1 ether'})
     i.withDraw(me, {'from': me})
 
 
@@ -98,7 +98,7 @@ def main():
     for j in range(5):
         print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
 
-    i.buyPlayer({'from': a1, 'amount':  '3 ether'})
+    i.buyPlayer({'from': a1, 'amount':  '1 ether'})
     print("Balance of minted Players After upgrade")
     for j in range(5):
         print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
@@ -110,15 +110,69 @@ def main():
         print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
 
 
+
+    ## RAFFLE
+
+    # add additional players
+
+    for j in range(1,10):
+        i.buyPlayer({'from': a[j], 'amount':  '0.1 ether'})
+        i.upgradeAllToMax({'from': a[j]})
+
+    for j in range(1,5):
+        i.buyPlayer({'from': a[j], 'amount':  '2 ether'})
+        i.upgradeAllToMax({'from': a[j]})
+
+
+
+    i.withDraw(me, {'from': me})
+
+
+
+
+
+    #print(nft_address)
+    #print([a1,a[2],a[3],a[4]])
+
+    i.createDistributionForRaffel();
+    nft_address = i.getAddresses({'from': me})
+
+    # Winner NFT
+    for j in range(len(nft_address)):
+        if c.balanceOf(nft_address[j],1001):
+            print("Place 1: "+nft_address[j])
+        if c.balanceOf(nft_address[j],1002):
+            print("Place 2: "+nft_address[j])
+        if c.balanceOf(nft_address[j],1003):
+            print("Place 3: "+nft_address[j])
+
+    # Unique NFT
+    print("--------------")
+    for j in range(len(nft_address)):
+        for k in range(10):
+            if c.balanceOf(nft_address[j],2001+k):
+                print("Unique: "+nft_address[j])
+            if c.balanceOf(nft_address[j],10000001+k):
+                print("Team: "+nft_address[j])
+        print("--------------")
+
+    # Player NFT
+
+
+
+
+
+
     ############################################################################
     ## Stop upgrading and minting ##
 
-    i.stopMinting({'from': me});
+    # i.stopMinting({'from': me});
     # i.buyPlayer({'from': a1, 'amount':  '1 ether'})
-    i.stopUpgrading({'from': me});
+    # i.stopUpgrading({'from': me});
     # i.upgradeAllToMax({'from': a1});
 
 
+    ############################################################################
 
 
 

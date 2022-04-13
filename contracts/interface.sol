@@ -23,9 +23,11 @@ contract Interface {
     bool minting;
     bool upgrading;
 
+    // Parameters for Raffel  (maybe not needed to define here, but problems with push if defined in function)
+    uint[] distributionForRaffel;
+    address[] nft_addresses;
+    bool[] has_team;
 
-    // parameter for the raffle
-    address[] ownerOfNft;
 
     constructor(address mintingProcess_address, address svg_address) {
       _mintingProcess = mintingProcess(mintingProcess_address);
@@ -41,7 +43,7 @@ contract Interface {
     // Everybody can get a player
     function buyPlayer() external payable {
         require(minting==true,"No more buying is possible.");
-        require(msg.value>price,"Insufficent Funds, please send more ETH.");
+        require(msg.value>=price,"Insufficent Funds, please send more ETH.");
         require(msg.value<=(3 ether),"Please buy for less than 3 ETH");
 
         uint newPlayers = msg.value/price;
@@ -153,10 +155,7 @@ contract Interface {
 
 
     /* To dos:
-       - Transfer stop
-          - raffle
-          - burn
-          - create a unique nft as combination of the previous ones
+
 
       - Keeper:
           - automatic initiate function of players
@@ -169,12 +168,7 @@ contract Interface {
 
 
 
-    function stopMinting() external onlyOwner() {
-        minting = false;
-    }
-    function stopUpgrading() external onlyOwner() {
-      upgrading = false;
-    }
+
 
 
 
@@ -185,6 +179,76 @@ contract Interface {
     }
 
 
+
+    /*
+      RAFFLE
+      */
+
+      /* function stopMinting() external onlyOwner() {
+          minting = false;
+      }
+      function stopUpgrading() external onlyOwner() {
+        upgrading = false;
+      } */
+
+
+      function getAddresses() external view  onlyOwner() returns (address[] memory nft_addresses)  {
+        nft_addresses = _svg.getAddresses();
+      }
+
+
+      function createDistributionForRaffel() external onlyOwner() {
+        require(minting==true,"Raffel was done.");
+        require(upgrading=true,"Raffel was done.");
+
+        // Deactivate Mining and Upgrading possibilty
+        minting = false;
+        upgrading = false;
+
+        address[] memory _nft_addresses = _svg.getAddresses();
+        for (uint a = 0; a<_nft_addresses.length; a++) {
+          // Currently statistik is no included, only standard bronze silver, and gold multiplier
+          uint points = 0;
+          uint player_count = 0;
+          for (uint i = 0; i<5; i++) {
+            uint _points = 50*_svg.balanceOf(_nft_addresses[a],i*4);
+            _points += 200*_svg.balanceOf(_nft_addresses[a],i*4+1);
+            _points += 750*_svg.balanceOf(_nft_addresses[a],i*4+2);
+            _points += 2500*_svg.balanceOf(_nft_addresses[a],i*4+3);
+
+            // Check if they have a player
+            if (_points>0) {
+              player_count += 1;
+            }
+
+            points += _points;
+          }
+          // Only people who own a nft can be part of the raffle
+          if (points>0) {
+            distributionForRaffel.push(points);
+            nft_addresses.push(_nft_addresses[a]);
+
+            // Team here has 5 players. True, if own whole team
+            if (player_count == 5) {
+              has_team.push(true);
+            } else {
+              has_team.push(false);
+            }
+          }
+
+        }
+
+        _mintingProcess.drawWinnerOfRaffel_noVrf(distributionForRaffel,nft_addresses,has_team);
+
+
+
+      }
+
+
+
+    /*
+      OWNER MANAGEMENT
+      */
 
     function changeOwner(address _newOwner) external onlyOwner() {
       ownerAddress = _newOwner;

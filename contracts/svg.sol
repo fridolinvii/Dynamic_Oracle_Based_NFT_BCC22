@@ -3,7 +3,8 @@
 pragma solidity ^0.8.0;
 
 // import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.sol";
+// import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.sol";
+import "./ERC1155_edited.sol";
 import "./getPlayerSvg.sol";
 
 
@@ -13,8 +14,7 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 
 
-contract SVG is ERC1155PresetMinterPauser {
-// contract SVG is ERC1155 {
+contract SVG is ERC1155 {
 
     getPlayerSvg getPlayer;
     using Strings for uint; // Allows to convert uints to strings
@@ -32,13 +32,12 @@ contract SVG is ERC1155PresetMinterPauser {
     string[] position;
     string[] playersName;
     mapping (string => uint[]) playerNameToIndex;
-
+    mapping (uint => uint) distributionForRaffel;
 
     address ownerOfContract;
     address[2] contractOfMintingProcess;
 
-    constructor(address _getPlayerSVG) ERC1155PresetMinterPauser("FC-Basel")  {
-    // constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
+    constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
       getPlayer = getPlayerSvg(_getPlayerSVG); //0x570674c3f93208524F77967d1aA967FbDbD27198
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
@@ -82,6 +81,14 @@ contract SVG is ERC1155PresetMinterPauser {
         _mint(nftOwner, idx, numberOfPlayer, "");
     }
 
+    function addDistribution(uint[] calldata _distributionForRaffel) external mintingProcess() {
+      uint count = 2001;
+      for (uint i = 0; i<_distributionForRaffel.length; i++) {
+        distributionForRaffel[count++] = _distributionForRaffel[i];
+      }
+
+    }
+
 
 
 
@@ -100,6 +107,13 @@ contract SVG is ERC1155PresetMinterPauser {
       _mint(msg.sender,tokenId[_level]+1, _numberOfUpgrades, "");
     }
 
+
+
+
+
+    function getAddresses() external view  mintingProcess() returns (address[] memory nft_addresses)  {
+      nft_addresses = _getAddresses();
+    }
 
 
 

@@ -55,6 +55,13 @@ contract mintingProcess is VRFConsumerBaseV2 {
   uint accumaltedPayment = 0;
 
 
+
+  // This parameters are for the scoreForRaffel
+  uint[] distributionForRaffel;
+  address[] nft_addresses;
+  address[] winner;
+
+
   constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
     COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
     svg = SVG(svg_address); // 0xd08A73a705070F394389a0656eDeF85D410c7d16
@@ -86,9 +93,40 @@ contract mintingProcess is VRFConsumerBaseV2 {
     // Compute automatically number of NFT bought, and return the rest
     numberOfPlayer.push(newPlayers);
 
-
-
   }
+
+  function drawWinnerOfRaffel(uint[] calldata _distributionForRaffel, address[] calldata _nft_addresses, bool[] calldata has_team) external interfaceAddress() {
+
+      // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
+      numberOfPlayer.push(0);
+      distributionForRaffel = _distributionForRaffel;
+      nft_addresses = _nft_addresses;
+
+      uint mintingUnique = 2001;
+      uint mintingUnique_team = 10000001; // Big enough number, so that it has no conflict with Points of all token NFT
+      for (uint i = 0; i<nft_addresses.length; i++) {
+          // minting total Points of all tokens
+          svg.mintPlayer(mintingUnique+i,nft_addresses[i],1);
+          if (has_team[i]==true) {
+            // Get an NFT, if owner of the team
+            svg.mintPlayer(mintingUnique_team++,nft_addresses[i],1);
+          }
+        }
+
+
+      // Will revert if subscription is not set and funded.
+      s_requestId = COORDINATOR.requestRandomWords(
+        keyHash,
+        s_subscriptionId,
+        requestConfirmations,
+        callbackGasLimit,
+        numWords
+      );
+  }
+
+
+
+
 
 
 
@@ -101,38 +139,76 @@ contract mintingProcess is VRFConsumerBaseV2 {
   ) internal override {
     s_randomWords = randomWords;
 
-    // give random number of players
-    uint player0 = 0;
-    uint player1 = 0;
-    uint player2 = 0;
-    uint player3 = 0;
-    uint player4 = 0;
 
-    for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {
-      uint idx = uint(keccak256(abi.encodePacked(randomWords[0],i))) % 5;
-      // uint idx = randNumber.getRandomNumber(randomNumber,i,5);
-      // This gives an error
-      //player[idx] += 1;
-      if (idx == 0 ) {
-        player0++;
-      } else if (idx == 1 ){
-        player1++;
-      } else if (idx == 2 ){
-        player2++;
-      } else if (idx == 3 ){
-        player3++;
-      } else if (idx == 4 ){
-        player4++;
+    if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
+      uint max_points = 0;
+      for (uint i=0; i<distributionForRaffel.length; i++) {
+        max_points += distributionForRaffel[i];
       }
-    }
 
-    uint[5] memory player = [player0,player1,player2,player3,player4];
+      // create random numbers
+      uint winner_1 = uint(keccak256(abi.encodePacked(randomWords[0],"winner_1","Wintersun"))) % max_points;
+      uint winner_2 = uint(keccak256(abi.encodePacked(randomWords[0],"winner_2","Powerwolf"))) % max_points;
+      uint winner_3 = uint(keccak256(abi.encodePacked(randomWords[0],"winner_3","In Flames"))) % max_points;
 
-
-    for (uint i = 0; i<player.length; i++){
-      if (player[i]>0){
-        svg.mintPlayer(i*4,minting[mintingCounter],player[i]);
+      uint sum_points = 0;
+      // mint unique NFT for 3 Winners
+      /* Place 1, 1001
+         Place 2, 1002
+         Place 3, 1003
+      */
+      for (uint i=0; i<distributionForRaffel.length; i++) {
+        sum_points += distributionForRaffel[i];
+        if (sum_points>winner_1) {
+          svg.mintPlayer(1001,nft_addresses[i],1);
+          winner_1 = max_points;
         }
+        if (sum_points>winner_2) {
+          svg.mintPlayer(1002,nft_addresses[i],1);
+          winner_2 = max_points;
+        }
+        if (sum_points>winner_3) {
+          svg.mintPlayer(1003,nft_addresses[i],1);
+          winner_3 = max_points;
+        }
+
+
+      }
+
+    } else { // numberOfPlayer[mintingCounter]>0
+      // give random number of players
+      uint player0 = 0;
+      uint player1 = 0;
+      uint player2 = 0;
+      uint player3 = 0;
+      uint player4 = 0;
+
+      for (uint i = 0; i<numberOfPlayer[mintingCounter]; i++) {
+        uint idx = uint(keccak256(abi.encodePacked(randomWords[0],i))) % 5;
+        // uint idx = randNumber.getRandomNumber(randomNumber,i,5);
+        // This gives an error
+        //player[idx] += 1;
+        if (idx == 0 ) {
+          player0++;
+        } else if (idx == 1 ){
+          player1++;
+        } else if (idx == 2 ){
+          player2++;
+        } else if (idx == 3 ){
+          player3++;
+        } else if (idx == 4 ){
+          player4++;
+        }
+      }
+
+      uint[5] memory player = [player0,player1,player2,player3,player4];
+
+
+      for (uint i = 0; i<player.length; i++){
+        if (player[i]>0){
+          svg.mintPlayer(i*4,minting[mintingCounter],player[i]);
+          }
+      }
     }
     mintingCounter += 1;
 
@@ -185,6 +261,72 @@ contract mintingProcess is VRFConsumerBaseV2 {
     mintingCounter += 1;
 
   }
+
+
+
+  function drawWinnerOfRaffel_noVrf(uint[] calldata _distributionForRaffel, address[] calldata _nft_addresses, bool[] calldata has_team) external interfaceAddress() {
+      uint randomNumber = block.timestamp;
+      // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
+      numberOfPlayer.push(0);
+      distributionForRaffel = _distributionForRaffel;
+      nft_addresses = _nft_addresses;
+
+      uint mintingUnique = 2001;
+      uint mintingUnique_team = 10000001; // Big enough number, so that it has no conflict with Points of all token NFT
+      for (uint i = 0; i<nft_addresses.length; i++) {
+          // minting total Points of all tokens
+          svg.mintPlayer(mintingUnique+i,nft_addresses[i],1);
+          if (has_team[i]==true) {
+            // Get an NFT, if owner of the team
+            svg.mintPlayer(mintingUnique_team++,nft_addresses[i],1);
+          }
+        }
+
+
+      if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
+        uint max_points = 0;
+        for (uint i=0; i<distributionForRaffel.length; i++) {
+          max_points += distributionForRaffel[i];
+        }
+
+        // create random numbers
+        uint winner_1 = uint(keccak256(abi.encodePacked(randomNumber,"winner_1","Wintersun"))) % max_points;
+        uint winner_2 = uint(keccak256(abi.encodePacked(randomNumber,"winner_2","Powerwolf"))) % max_points;
+        uint winner_3 = uint(keccak256(abi.encodePacked(randomNumber,"winner_3","In Flames"))) % max_points;
+
+        uint sum_points = 0;
+        // mint unique NFT for 3 Winners
+        /* Place 1, 1001
+           Place 2, 1002
+           Place 3, 1003
+
+        */
+
+        // To Do: Make Winners unique
+        for (uint i=0; i<distributionForRaffel.length; i++) {
+          sum_points += distributionForRaffel[i];
+          if (sum_points>winner_1) {
+            svg.mintPlayer(1001,nft_addresses[i],1);
+            winner_1 = max_points;
+          }
+          if (sum_points>winner_2) {
+            svg.mintPlayer(1002,nft_addresses[i],1);
+            winner_2 = max_points;
+          }
+          if (sum_points>winner_3) {
+            svg.mintPlayer(1003,nft_addresses[i],1);
+            winner_3 = max_points;
+          }
+
+
+
+
+        }
+      }
+
+
+  }
+
 
 
 
