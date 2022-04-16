@@ -20,7 +20,7 @@ contract SVG is ERC1155 {
     using Strings for uint; // Allows to convert uints to strings
 
     string img_name = "FC-Basel";
-    string img_description = "Disclaimer: The scope of the project is within the Blockchain Challenge 2022 lecture offered by the University of Basel. The project will remain within the test et. The NFTs will never be sold nor is there any financial interest at hand by the owners or the course responsible."; // The images used are proprietary of https://www.fcb.ch . ";
+    string img_description = "Disclaimer: The scope of the project is within the Blockchain Challenge 2022 lecture offered by the University of Basel. The project will remain within the test net. The NFTs will never be sold nor is there any financial interest at hand by the owners or the course responsible."; // The images used are proprietary of https://www.fcb.ch . ";
     bool flag; // Determines the background color of the NFT
 
 
@@ -33,14 +33,29 @@ contract SVG is ERC1155 {
     string[] playersName;
     mapping (string => uint[]) playerNameToIndex;
     mapping (uint => uint) distributionForRaffel;
+    mapping(uint => uint) score; // Shows scores on the unique NFTs
 
     address ownerOfContract;
     address[2] contractOfMintingProcess;
 
     constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x570674c3f93208524F77967d1aA967FbDbD27198
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0x7d1Afa9ef8C19214D93CB27e5E4f5bc3708ed689
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
+
+      // Add players
+
+      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0);
+      _addPlayer("Noah Katterbach","Defence",0,0,0);
+      _addPlayer("Andy Pelmard","Defence",0,0,0);
+      _addPlayer("Pajtim Kasami","Midfield",0,0,0);
+      _addPlayer("Liam Millar","Offense",0,0,0);
+
+      /* _addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
+      _addPlayer("Noah Katterbach","Defence",766,8,1);
+      _addPlayer("Andy Pelmard","Defence",2267,24,0);
+      _addPlayer("Pajtim Kasami","Midfield",1734,24,3);
+      _addPlayer("Liam Millar","Offense",1611,25,5); */
     }
 
     modifier onlyOwner() {
@@ -123,7 +138,7 @@ contract SVG is ERC1155 {
 
 
 
-    function addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals ) external onlyOwner() {
+    function _addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals ) internal {
 
         for (uint i = 0; i<4; i++) {
           playersName.push(_playersName);
@@ -154,19 +169,56 @@ contract SVG is ERC1155 {
 
     function uri(uint tokenId) public view override returns (string memory output) {
 
-        string memory svg = getPlayer.getSVG(gameplay[tokenId], numberOfGames[tokenId], goals[tokenId], playersName[tokenId], position[tokenId], level[tokenId]);
+        uint star;
+        uint _tokenId;
+        string memory _img_description;
 
 
+        if (tokenId<1001) { //normal NFT
+          star = level[tokenId];
+          _tokenId = tokenId;
+          _img_description = img_description;
+        }
+
+       // These are the place 1-3 NFT
+        if (tokenId==1001) { // Place 1:
+          star = 3;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 1",star)))% 5);
+          _img_description = string(abi.encodePacked("Place 1! ", img_description));
+        } else if  (tokenId==1002) { // Place 2:
+          star = 2;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 2",star)))% 5);
+          _img_description = string(abi.encodePacked("Place 2! ", img_description));
+        } else if (tokenId==1003) { // Place 3:
+          star = 1;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 3",star)))% 5);
+          _img_description = string(abi.encodePacked("Place 3! ", img_description));
+        }
+
+        if ( (tokenId>2000) && (tokenId<10000001) ) {
+          star = 0;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5);
+          _img_description = string(abi.encodePacked("Unique NFT! ", img_description));
+        }
+        if ( (tokenId>10000000) ) {
+          star = 0;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5);
+          _img_description = string(abi.encodePacked("Team NFT! ", img_description));
+        }
+
+        uint _score = score[tokenId];
+        string memory svg = getPlayer.getSVG(gameplay[_tokenId], numberOfGames[_tokenId], goals[_tokenId], playersName[_tokenId], position[_tokenId], star, tokenId, _score);
         output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked(
-            '{"name": "', playersName[tokenId], '", "description": "', img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
+            '{"name": "', playersName[_tokenId], '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
         ))))));
 
     }
 
-
+  // Add score to each unique NFT
+  function addScore(uint tokenId,uint _score) external mintingProcess() {
+    score[tokenId] = _score;
+  }
 }
-
-
 /// [MIT License]
 /// @title Base64
 /// @notice Provides a function for encoding some bytes in base64

@@ -65,7 +65,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
   constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
     COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
-    svg = SVG(svg_address); // 0xd08A73a705070F394389a0656eDeF85D410c7d16
+    svg = SVG(svg_address); // 0x6f7Dc617174a2E17DCd659Dbef1231384fc962Af
     // randNumber = translateNumber(translateNumber_address);
     s_owner = msg.sender;
     interface_address = msg.sender;
@@ -115,6 +115,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
       for (uint i = 0; i<nft_addresses.length; i++) {
           // minting total Points of all tokens
           svg.mintPlayer(mintingUnique+i,nft_addresses[i],1);
+          svg.addScore(mintingUnique+i,distributionForRaffel[i]);
           if (has_team[i]==true) {
             // Get an NFT, if owner of the team
             svg.mintPlayer(mintingUnique_team++,nft_addresses[i],1);
@@ -215,7 +216,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
       uint randomNumber = s_randomWords;
       // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
 
-      uint mintingUnique = 2001;
+      uint mintingUnique = 1001;
 
       if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
         uint max_points = 0;

@@ -1,0 +1,268 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "mintingProcess_address",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "svg_address",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_vrf",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "buyPlayer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_vrf",
+						"type": "bool"
+					}
+				],
+				"name": "changeVrf",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "createDistributionForRaffel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAddresses",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_nft_addresses",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "upgradeAllToMax",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_payout",
+						"type": "address"
+					}
+				],
+				"name": "withDraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/interface.sol": "Interface"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol": {
+			"keccak256": "0xec8b7e3032e887dd0732d2a5f8552ddce64a99a81b0008ef0bcf6cad68a535fc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://362303461c62155063196629bf0f26377e024f303ce4ec0258ae67ce4cd1b884",
+				"dweb:/ipfs/QmNyBvuwApTXTL1Ew7EjGURbyWRiYuRZxWFGY1qjZEAEK2"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol": {
+			"keccak256": "0xc7d7cd730d36825485ef4107d93c3ff18b9f3a5a00ea3d5988ba9a0bd70b10c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8cb1064885ecbcd9c3adba779e190cb4a538e5d4d15aeccb67d3376bdffc94bd",
+				"dweb:/ipfs/QmcQHK6ewve7tFi4XXK65JthQg4kQzApQikWcURJjGt4iQ"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
+			"keccak256": "0xcb29ee50ee2b05441e4deebf8b4756a0feec4f5497e36b6a1ca320f7ce561802",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b4f2ac9fe4e83334c0cc7b070989f133647f20c2b2e8f2224e10d37bebc6df",
+				"dweb:/ipfs/QmYS2z7xmTArVpxiNM8Czj1qKL56HMw61Lzdjto9m3B5PL"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+			"keccak256": "0x8e93de94c9062ebc94fb7e2e3929b0781ac6a2b7772e2f7a59045861c93e5be9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f920a631bf986c610fe573d3c70a2bb6f224f86f4a8550016470c7ee476c9ab5",
+				"dweb:/ipfs/QmYzsyVMfnaREKHcHv5RPS8Xg5r1Q38E2SDsGBTnXeFWzb"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+			"keccak256": "0xeb373f1fdc7b755c6a750123a9b9e3a8a02c1470042fd6505d875000a80bde0b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0e28648f994abf1d6bc345644a361cc0b7efa544f8bc0c8ec26011fed85a91ec",
+				"dweb:/ipfs/QmVVE7AiRjKaQYYji7TkjmTeVzGpNmms5eoxqTCfvvpj6D"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+			"keccak256": "0xa66d18b9a85458d28fc3304717964502ae36f7f8a2ff35bc83f6f85d74b03574",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e46c80ea068989111d6103e5521223f9ef337e93de76deed8b03f75c6f7b2797",
+				"dweb:/ipfs/QmNoSE6knNfFncdDDLTb3fGR6oSQty1srG96Vsx3E9wQdw"
+			]
+		},
+		"@openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0x2ccf9d2313a313d41a791505f2b5abfdc62191b5d4334f7f7a82691c088a1c87",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b3a57d0854b2fdce6ebff933a48dca2445643d1eccfc27f00292e937f26c6a58",
+				"dweb:/ipfs/QmW45rZooS9TqR4YXUbjRbtf2Bpb5ouSarBvfW1LdGprvV"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x32c202bd28995dd20c4347b7c6467a6d3241c74c8ad3edcbb610cd9205916c45",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8179c356adb19e70d6b31a1eedc8c5c7f0c00e669e2540f4099e3844c6074d30",
+				"dweb:/ipfs/QmWFbivarEobbqhS1go64ootVuHfVohBseerYy9FTEd1W2"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fb0048dee081f6fffa5f74afc3fb328483c2a30504e94a0ddd2a5114d731ec4d",
+				"dweb:/ipfs/QmZptt1nmYoA5SgjwnSgWqgUSDgm4q52Yos3xhnMv3MV43"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
+				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/ERC1155_edited.sol": {
+			"keccak256": "0x740783a544897309a87b262ee041beb3138270be23bd872bb39001bd48699885",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://af86426819465c79a5064f7fc65259094e9e410564c71e0b9be4891cf79447de",
+				"dweb:/ipfs/QmbQceZSxPnFjxtZSLyPoKKPxwJ6GyUAwtgEvxoehTJRmq"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
+			"keccak256": "0xb0f1f0a21ca84478365454552f4754bd175920c6572dcfec38950cb1a8fc32ca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a36122711e0c03fc5587e52c0622eeaae0f4dd954cdc2e6900a36d3c180a48ea",
+				"dweb:/ipfs/QmYbf6xxipZGozccaY7RKJfUcJ6S8sQJgX3MfsGkZW6VLs"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/interface.sol": {
+			"keccak256": "0xf53d3ce60e861e85b98ea9e24ec0da06b105d15e3bac676635e6312a1bf70425",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9b83c299aa982302e0d2886389dd0bfb5da331a4893d4b3eb54056c9a2dfb1d3",
+				"dweb:/ipfs/QmQd9wt4CRUGG3hmdDyBVyTBjo8MvJsXf8znJZPB4kKQ8D"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/mintingProcess.sol": {
+			"keccak256": "0x618725f6947080aa8111af5508dc78171d6bbbfe2bbe6cfa422b82bbcdd4dfcc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://284fb3a1ea339d0d330d0798fe1a3a1ee13e17d54d72e48814bc975c25be0eca",
+				"dweb:/ipfs/QmR7tf5ks8hXh7RvCUzj23zHyah2SHVewHXVWyzFdmD1uB"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
+			"keccak256": "0xad28144931764b7751cb1f3f3ea46f3286103c0900a12367aaa179ca51a41f25",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c46037cd560d10b9214654f5642abdedb78d713ed0e7d852f8adc4ab2be6b62a",
+				"dweb:/ipfs/QmdNqjjmgUmtK9qU9hUH81q59FfJeRe9dRFAkxnvzTCbbK"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
+			"keccak256": "0x07e8f3f0a89e1af5bd0012bb6b86ac1cdc06d8b47271ed06a7c34665289abf96",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5faad3712168096bbfb8c6d361ca77297d150b7363e38f5ba704c50540b4ced4",
+				"dweb:/ipfs/QmfS25EHnpCeNGxrJrTD8RzPcK1sSz91bHoGNhmhagRsCx"
+			]
+		}
+	},
+	"version": 1
+}

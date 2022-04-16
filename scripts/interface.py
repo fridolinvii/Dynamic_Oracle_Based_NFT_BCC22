@@ -54,14 +54,15 @@ def main():
     getSVG = getPlayerSvg.deploy(ap.address, lm.address, nk.address, pk.address, hl.address, {'from': me})
 
     c = SVG.deploy(getSVG.address, {'from': me})
+    html = data2svg(c.uri(19))
 
-    # add 4 players
+    # add 5 players
     #addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals )
-    c.addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
-    c.addPlayer("Noah Katterbach","Defence",766,8,1);
-    c.addPlayer("Andy Pelmard","Defence",2267,24,0);
-    c.addPlayer("Pajtim Kasami","Midfield",1734,24,3);
-    c.addPlayer("Liam Millar","Offense",1611,25,5);
+    # c.addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
+    # c.addPlayer("Noah Katterbach","Defence",766,8,1);
+    # c.addPlayer("Andy Pelmard","Defence",2267,24,0);
+    # c.addPlayer("Pajtim Kasami","Midfield",1734,24,3);
+    # c.addPlayer("Liam Millar","Offense",1611,25,5);
 
 
 
@@ -179,5 +180,62 @@ def main():
 
 
     print("END")
+
+    # Show NFTs
+    # html = data2svg(c.uri(0))
+    # html += data2svg(c.uri(1))
+    # html += data2svg(c.uri(2))
+    # html += data2svg(c.uri(3))
+    #
+    # html += data2svg(c.uri(4))
+    # html += data2svg(c.uri(5))
+    # html += data2svg(c.uri(6))
+    # html += data2svg(c.uri(7))
+    #
+    # html += data2svg(c.uri(8))
+    # html += data2svg(c.uri(9))
+    # html += data2svg(c.uri(10))
+    # html += data2svg(c.uri(11))
+    #
+    # html += data2svg(c.uri(12))
+    # html += data2svg(c.uri(13))
+    # html += data2svg(c.uri(14))
+    # html += data2svg(c.uri(15))
+    #
+    # html += data2svg(c.uri(16))
+    # html += data2svg(c.uri(17))
+    # html += data2svg(c.uri(18))
+    # html += data2svg(c.uri(19))
+
+
+
+    # Winner NFT
+    html = data2svg(c.uri(1001))
+    html += data2svg(c.uri(1002))
+    html += data2svg(c.uri(1003))
+
+    # Unique NFT
+    # html = data2svg(c.uri(2001))
+    # html += data2svg(c.uri(2002))
+    html += data2svg(c.uri(2003))
+    #
+    #
+
+    # Team NFT
+    #html = data2svg(c.uri(10000001))
+    # html += data2svg(c.uri(10000002))
+    html += data2svg(c.uri(10000003))
+    # print(html)
+
+    # Display the SVGs
+    if not QtWidgets.QApplication.instance():
+        app = QtWidgets.QApplication(sys.argv)
+    else:
+        app = QtWidgets.QApplication.instance()
+
+    disp1 = DisplaySVG(svg=html)
+    disp1.show()
+    app.exec_()
+
 
     return i , c

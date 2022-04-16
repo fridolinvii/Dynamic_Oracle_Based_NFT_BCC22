@@ -18,7 +18,7 @@ contract Interface {
 
 
     // price of 1 Panini
-    uint price = 0.01 * (1 ether);
+    uint price = 0.001 * (1 ether);
 
     // earnings and owner can withDraw ether
     uint accumaltedPayment;
@@ -34,9 +34,9 @@ contract Interface {
     bool[] has_team;
 
 
-    constructor(address mintingProcess_address, address svg_address, bool _vrf) {
-      _mintingProcess = mintingProcess(mintingProcess_address);
-      _svg = SVG(svg_address);
+    constructor(address mintingProcess_address, address svg_address, bool _vrf) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
+      _mintingProcess = mintingProcess(mintingProcess_address); // 0x8CFeDa3B85ec8Df81d0209c34EC7c38538fc496C
+      _svg = SVG(svg_address);  // 0x6f7Dc617174a2E17DCd659Dbef1231384fc962Af
       ownerAddress = msg.sender;
 
       vrf = _vrf;

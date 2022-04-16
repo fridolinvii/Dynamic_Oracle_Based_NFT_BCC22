@@ -38,15 +38,78 @@
 				"type": "error"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "vrf",
+						"type": "bool"
+					}
+				],
 				"name": "buyPlayer",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "mint",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_interface_address",
+						"type": "address"
+					}
+				],
+				"name": "changeInterfaceAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_distributionForRaffel",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "_nft_addresses",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "has_team",
+						"type": "bool[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "vrf",
+						"type": "bool"
+					}
+				],
+				"name": "drawWinnerOfRaffel",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -70,13 +133,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
 				"name": "s_randomWords",
 				"outputs": [
 					{
@@ -99,19 +156,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_payout",
-						"type": "address"
-					}
-				],
-				"name": "withDraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -136,7 +180,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -164,14 +208,6 @@
 			"urls": [
 				"bzz-raw://87b4f2ac9fe4e83334c0cc7b070989f133647f20c2b2e8f2224e10d37bebc6df",
 				"dweb:/ipfs/QmYS2z7xmTArVpxiNM8Czj1qKL56HMw61Lzdjto9m3B5PL"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
-			"keccak256": "0x04d6d1342ece664085921a4fabc928a7bcf1cf2873fa81780f61a54dc2b9b66e",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://c6d2b052effa2e9a7479b0fea53b46f4cbbd91947848ef632aadad20ae2e9275",
-				"dweb:/ipfs/QmcZp7f5cooGZrhHE8RC1yQR53RFZt19d5fyVqNfbHmPgY"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
@@ -238,36 +274,44 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
-			"keccak256": "0xaedfdedadc0d7e00ff5a3b8d03dcbdd32a65661075591b7750b0bf84f721c9c9",
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/ERC1155_edited.sol": {
+			"keccak256": "0x740783a544897309a87b262ee041beb3138270be23bd872bb39001bd48699885",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://10ea0296a26f53dca6df885049bb722b0e12e1f787a29b2c817ccef959af63d0",
-				"dweb:/ipfs/QmbGmVP7fjMoLzs9hpJyfSwt6woGuL11Wr4mYHc7GFoncp"
+				"bzz-raw://af86426819465c79a5064f7fc65259094e9e410564c71e0b9be4891cf79447de",
+				"dweb:/ipfs/QmbQceZSxPnFjxtZSLyPoKKPxwJ6GyUAwtgEvxoehTJRmq"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
+			"keccak256": "0xb0f1f0a21ca84478365454552f4754bd175920c6572dcfec38950cb1a8fc32ca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a36122711e0c03fc5587e52c0622eeaae0f4dd954cdc2e6900a36d3c180a48ea",
+				"dweb:/ipfs/QmYbf6xxipZGozccaY7RKJfUcJ6S8sQJgX3MfsGkZW6VLs"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/mintingProcess.sol": {
-			"keccak256": "0xf9d586d7f4519613c64c307aff95584d272029c1cf59ee97fbd210c301a6f118",
+			"keccak256": "0x618725f6947080aa8111af5508dc78171d6bbbfe2bbe6cfa422b82bbcdd4dfcc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7556c09ae0562304d8c36bda3d7e052bf900dde1ff627d1e4e29676f2045900b",
-				"dweb:/ipfs/QmQmvhLVk5xWGLncWYuSmMeKX9dct4ndage3wS8ZYuZinf"
+				"bzz-raw://284fb3a1ea339d0d330d0798fe1a3a1ee13e17d54d72e48814bc975c25be0eca",
+				"dweb:/ipfs/QmR7tf5ks8hXh7RvCUzj23zHyah2SHVewHXVWyzFdmD1uB"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
-			"keccak256": "0xe9d294b388eecdf37a4927e7ff591f38b673fb4e65866968c90760ed56be5db5",
+			"keccak256": "0xad28144931764b7751cb1f3f3ea46f3286103c0900a12367aaa179ca51a41f25",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://01ad1431974c7cc0c4a0f19c75557cb3b30b522194713176f427e62fc46cdadb",
-				"dweb:/ipfs/Qmc3BsXhUVDaQaHFZCDRXVszm1u7Jwo8UHzL4HobcuHi5u"
+				"bzz-raw://c46037cd560d10b9214654f5642abdedb78d713ed0e7d852f8adc4ab2be6b62a",
+				"dweb:/ipfs/QmdNqjjmgUmtK9qU9hUH81q59FfJeRe9dRFAkxnvzTCbbK"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0xee91fe7159d863877b98fec5292465b0d3590d5c8600c2d767fc68d5c02f60d4",
+			"keccak256": "0x07e8f3f0a89e1af5bd0012bb6b86ac1cdc06d8b47271ed06a7c34665289abf96",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bbac610e34d565e004584835adb82fa0c8c803418bc9225b94f811f3432ddfdb",
-				"dweb:/ipfs/QmNSBSyb4wMvVDXTk2GPFytz5dDvgpmBVyZxDU9UNmP6VG"
+				"bzz-raw://5faad3712168096bbfb8c6d361ca77297d150b7363e38f5ba704c50540b4ced4",
+				"dweb:/ipfs/QmfS25EHnpCeNGxrJrTD8RzPcK1sSz91bHoGNhmhagRsCx"
 			]
 		}
 	},

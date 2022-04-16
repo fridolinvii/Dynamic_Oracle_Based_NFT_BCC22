@@ -16,16 +16,18 @@ contract getPlayerSvg {
 
 
   constructor(address _AndyPelmard, address _LiamMillar, address _NoahKatterbach, address _PajtimKasami, address _HeinzLindner) {
-      andyPelmard = AndyPelmard(_AndyPelmard); // 0x84919768c2dDAc6a6202eefFBa3ec47bDC760e0E
-      liamMillar = LiamMillar(_LiamMillar); // 0x55D6d5ab809c402454f5Da78F78fF54861c29834       // This one has problems
-      noahKatterbach = NoahKatterbach(_NoahKatterbach); // 0x82cA5529B5D888444eE596260040BEa5A49AA30d
-      pajtimKasami = PajtimKasami(_PajtimKasami); // 0x82cA5529B5D888444eE596260040BEa5A49AA30d // wrong svg
-      heinzLindner = HeinzLindner(_HeinzLindner); // 0xAC40388dC15E52A63Fed7D5421f2a1961aD20A08
+      andyPelmard = AndyPelmard(_AndyPelmard); // 0x6d69e58B136AE0c18f5ffF6d96D4e8Db74cf76a3
+      liamMillar = LiamMillar(_LiamMillar); // 0x6aa24b13A93ba61dd5675824f2b9e48bd5836bd3
+      noahKatterbach = NoahKatterbach(_NoahKatterbach); // 0x9692501c9F4B4EC92Ee0ed2C9130fb90508e17E9
+      pajtimKasami = PajtimKasami(_PajtimKasami); // 0x0Af2F3750c3741f575e18c47B86BA852dd7A667f
+      heinzLindner = HeinzLindner(_HeinzLindner); // 0xe115Cd70906EBd92aaA7b5249B8714BEA370e953
   }
 
 
 
-  function getSVG(uint gameplay, uint numberOfGames, uint goals, string memory name, string memory position, uint level) external view  returns (string memory svg) {
+
+
+  function getSVG(uint gameplay, uint numberOfGames, uint goals, string memory name, string memory position, uint level, uint tokenId, uint score) external view  returns (string memory svg) {
 
     svg = '<svg width="390" height="435" fill="green" xmlns="http://www.w3.org/2000/svg">';
     svg = string(abi.encodePacked(svg,
@@ -54,6 +56,22 @@ contract getPlayerSvg {
     svg = string(abi.encodePacked(svg, '<text x="20" y="340" >Games: ', Strings.toString(numberOfGames),'</text>'));
     svg = string(abi.encodePacked(svg, '<text x="20" y="360" >Goals: ', Strings.toString(goals), '</text>'));
     svg = string(abi.encodePacked(svg, '<text x="20" y="380" >Position: ', position, '</text>'));
+
+    if (tokenId == 1001) { // Place 1!
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Place 1 </text>'));
+    }
+    if (tokenId == 1002) { // Place 2!
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Place 2 </text>'));
+    }
+    if (tokenId == 1003) { // Place 3!
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Place 3 </text>'));
+    }
+    if (tokenId > 10000000) {
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Team NFT </text>'));
+    }
+    if ( (tokenId>2000) && (tokenId<10000001) ) {
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Score: ' , Strings.toString(score) , ' </text>'));
+    }
     //svg = string(abi.encodePacked(svg, '<text x="20" y="80">NFT ID: ', tokenId.toString(), '</text>'));
 
     svg = string(abi.encodePacked(svg, '</svg>'));
