@@ -7,6 +7,11 @@ import "./svg.sol";
 
 contract Interface {
 
+
+    // use vrf (true) or simulate vrf (false)
+    bool vrf;
+
+
     // It interacts with the smart Contract to mint players with VRF2
     mintingProcess _mintingProcess;
     SVG _svg;
@@ -29,10 +34,12 @@ contract Interface {
     bool[] has_team;
 
 
-    constructor(address mintingProcess_address, address svg_address) {
+    constructor(address mintingProcess_address, address svg_address, bool _vrf) {
       _mintingProcess = mintingProcess(mintingProcess_address);
       _svg = SVG(svg_address);
       ownerAddress = msg.sender;
+
+      vrf = _vrf;
 
       minting = true;
       upgrading = true;
@@ -55,10 +62,7 @@ contract Interface {
         accumaltedPayment += newPlayers*price;
 
         // mint random players with the help of vrf
-        // _mintingProcess.buyPlayer(msg.sender,newPlayers);
-
-        // mint random players with no vrf  (testing with brownie)
-        _mintingProcess.buyPlayer_noVrf(msg.sender,newPlayers);
+        _mintingProcess.buyPlayer(msg.sender,newPlayers, vrf);
     }
 
 
@@ -192,8 +196,8 @@ contract Interface {
       } */
 
 
-      function getAddresses() external view  onlyOwner() returns (address[] memory nft_addresses)  {
-        nft_addresses = _svg.getAddresses();
+      function getAddresses() external view  onlyOwner() returns (address[] memory _nft_addresses)  {
+        _nft_addresses = _svg.getAddresses();
       }
 
 
@@ -238,7 +242,7 @@ contract Interface {
 
         }
 
-        _mintingProcess.drawWinnerOfRaffel_noVrf(distributionForRaffel,nft_addresses,has_team);
+        _mintingProcess.drawWinnerOfRaffel(distributionForRaffel,nft_addresses,has_team,vrf);
 
 
 
@@ -259,6 +263,12 @@ contract Interface {
       _;
     }
 
+
+
+    // Change if you use VRF (true) or simulation of VRF (false)
+    function changeVrf(bool _vrf) external onlyOwner() {
+      vrf = _vrf;
+    }
 
 
 }

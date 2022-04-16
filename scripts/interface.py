@@ -74,7 +74,7 @@ def main():
 
 
     ## Include interface
-    i = Interface.deploy(m.address, c.address, {'from': me})
+    i = Interface.deploy(m.address, c.address, False, {'from': me})
     # give m access to c
     c.changeMintingProcess(m.address, i.address, {'from': me})
     m.changeInterfaceAddress(i.address, {'from': me});
@@ -124,7 +124,7 @@ def main():
         i.upgradeAllToMax({'from': a[j]})
 
 
-
+    print("Withdraw ETH")
     i.withDraw(me, {'from': me})
 
 
@@ -134,7 +134,9 @@ def main():
     #print(nft_address)
     #print([a1,a[2],a[3],a[4]])
 
+    print("createDistributionForRaffel")
     i.createDistributionForRaffel();
+    print("nft_address")
     nft_address = i.getAddresses({'from': me})
 
     # Winner NFT
