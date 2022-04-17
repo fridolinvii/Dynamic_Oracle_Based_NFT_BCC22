@@ -65,7 +65,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
   constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
     COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
-    svg = SVG(svg_address); // 0x6f7Dc617174a2E17DCd659Dbef1231384fc962Af
+    svg = SVG(svg_address); // 
     // randNumber = translateNumber(translateNumber_address);
     s_owner = msg.sender;
     interface_address = msg.sender;
@@ -216,7 +216,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
       uint randomNumber = s_randomWords;
       // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
 
-      uint mintingUnique = 1001;
+      
 
       if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
         uint max_points = 0;

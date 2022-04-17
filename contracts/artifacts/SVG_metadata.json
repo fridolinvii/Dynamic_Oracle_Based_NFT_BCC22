@@ -676,11 +676,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0xa637e8a39b0276e2609698f80cdc63e80053444613643ae0cc2ee27e712c2bd4",
+			"keccak256": "0x539f5005f62060c10a34afcdf8183b743f2949ece1e3fa3b13c99fecfd3cc0d9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://87edc3b74196bd921d184f8212b29ab5df72c024033dd5d17677004fe1ef1020",
-				"dweb:/ipfs/QmcT5ZPQmQdjpgTktPP9b7xrGWcbDurEXwoSUg1gZPCsRh"
+				"bzz-raw://ac0907e338b01ba82ccc2e339b4960594d31f06001733d1f61e052bfa846235f",
+				"dweb:/ipfs/QmYbmASfYXjDHe3jafvjCyn65mUL8fTPrMBvopVSpiPs16"
 			]
 		}
 	},

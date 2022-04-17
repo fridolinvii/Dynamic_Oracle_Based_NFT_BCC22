@@ -21,6 +21,16 @@
 						"internalType": "bool",
 						"name": "_vrf",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startRaffel",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_checkOracle",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -60,10 +70,27 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "createDistributionForRaffel",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "checkUpkeep",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "upkeepNeeded",
+						"type": "bool"
+					},
+					{
+						"internalType": "bytes",
+						"name": "performData",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -77,6 +104,26 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "performData",
+						"type": "bytes"
+					}
+				],
+				"name": "performUpkeep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "simulateKeeper",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -102,12 +149,23 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"performUpkeep(bytes)": {
+					"details": "The input to this method should not be trusted, and the caller of the method should not even be restricted to any single registry. Anyone should be able call it, and the input should be validated, there is no guarantee that the data passed in is the performData returned from checkUpkeep. This could happen due to malicious keepers, racing keepers, or simply a state change while the performUpkeep transaction is waiting for confirmation. Always validate the data passed in.",
+					"params": {
+						"performData": "is the data which was passed back from the checkData simulation. If it is encoded, it can easily be decoded into other types by calling `abi.decode`. This data should not be trusted, and should be validated against the contract's current state."
+					}
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"performUpkeep(bytes)": {
+					"notice": "method that is actually executed by the keepers, via the registry. The data returned by the checkUpkeep simulation will be passed into this method to actually be executed."
+				}
+			},
 			"version": 1
 		}
 	},
@@ -127,12 +185,36 @@
 		"remappings": []
 	},
 	"sources": {
+		"@chainlink/contracts/src/v0.8/KeeperBase.sol": {
+			"keccak256": "0x5dc972fdf3a524312e68ef6d2e58bcdaf965d08d9415aefa289207350c2bc85a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d39ed8c38c1527a48c08ccd905a58a438998d38700c238c371ba522452f99d51",
+				"dweb:/ipfs/QmSUL2zq3Gm1yVXgAsqaEH8vcX3z77WeTphsDkFsWRrKvy"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/KeeperCompatible.sol": {
+			"keccak256": "0xfdb84fea1ee213662ae66b95d4f620be73b7af5ede58be3d330b222b9b566d95",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e960e1753c1a7c3da0ead8889631662cc77d8359f8de86bdc958a57960b82127",
+				"dweb:/ipfs/Qma8iUq8T8vWfHcRSgv38dhVyzdpKoDPR5jgpr31WYZSvx"
+			]
+		},
 		"@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol": {
 			"keccak256": "0xec8b7e3032e887dd0732d2a5f8552ddce64a99a81b0008ef0bcf6cad68a535fc",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://362303461c62155063196629bf0f26377e024f303ce4ec0258ae67ce4cd1b884",
 				"dweb:/ipfs/QmNyBvuwApTXTL1Ew7EjGURbyWRiYuRZxWFGY1qjZEAEK2"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol": {
+			"keccak256": "0xb6577cda6b731b655aebcb6e3c24f8658d3f4c5eda07200622d07d4570af33ea",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a27100d0f91626ace3dd6912d41033a9bba43ea31b5e17f3d847fef1155398a4",
+				"dweb:/ipfs/QmepkhmjCMnyPF166QcNEojmc1ZeSNPRs619r5GpU1YRPn"
 			]
 		},
 		"@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol": {
@@ -232,19 +314,19 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/interface.sol": {
-			"keccak256": "0xf53d3ce60e861e85b98ea9e24ec0da06b105d15e3bac676635e6312a1bf70425",
+			"keccak256": "0x01fae3c042c429203e921a4dc8ca3ea565fd6b4939d21145d09f8a4928c2394c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9b83c299aa982302e0d2886389dd0bfb5da331a4893d4b3eb54056c9a2dfb1d3",
-				"dweb:/ipfs/QmQd9wt4CRUGG3hmdDyBVyTBjo8MvJsXf8znJZPB4kKQ8D"
+				"bzz-raw://6f2fb397a24efa804513279eb3c851cfd32d42e3b7c3ad444eff44d13681eb20",
+				"dweb:/ipfs/QmS2jZCKJLteo9j7uRpsuabzhTKQiAbxcbqnJyCNnrfiD5"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/mintingProcess.sol": {
-			"keccak256": "0x618725f6947080aa8111af5508dc78171d6bbbfe2bbe6cfa422b82bbcdd4dfcc",
+			"keccak256": "0xb523c680354fe3a1f01f732e3c53c53ae635a8e74b50a4c21ba8be6b59245a96",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://284fb3a1ea339d0d330d0798fe1a3a1ee13e17d54d72e48814bc975c25be0eca",
-				"dweb:/ipfs/QmR7tf5ks8hXh7RvCUzj23zHyah2SHVewHXVWyzFdmD1uB"
+				"bzz-raw://b30991d479b331e7b750944ce7a2fc31a9e8c66e9485dccb5831bc157286a707",
+				"dweb:/ipfs/QmdiwTvf6vBKR5xszi1onvgUs1E6hrWkS7aboNdALFHREX"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
@@ -256,11 +338,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0x07e8f3f0a89e1af5bd0012bb6b86ac1cdc06d8b47271ed06a7c34665289abf96",
+			"keccak256": "0x539f5005f62060c10a34afcdf8183b743f2949ece1e3fa3b13c99fecfd3cc0d9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5faad3712168096bbfb8c6d361ca77297d150b7363e38f5ba704c50540b4ced4",
-				"dweb:/ipfs/QmfS25EHnpCeNGxrJrTD8RzPcK1sSz91bHoGNhmhagRsCx"
+				"bzz-raw://ac0907e338b01ba82ccc2e339b4960594d31f06001733d1f61e052bfa846235f",
+				"dweb:/ipfs/QmYbmASfYXjDHe3jafvjCyn65mUL8fTPrMBvopVSpiPs16"
 			]
 		}
 	},

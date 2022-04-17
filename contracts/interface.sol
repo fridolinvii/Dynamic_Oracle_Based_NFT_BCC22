@@ -2,15 +2,17 @@
 
 pragma solidity ^0.8.7;
 
+import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 import "./mintingProcess.sol";
 import "./svg.sol";
 
-contract Interface {
+contract Interface is KeeperCompatibleInterface {
 
 
     // use vrf (true) or simulate vrf (false)
     bool vrf;
-
+    // use keeper (true) or simulate keeper (false)
+    bool keeper;
 
     // It interacts with the smart Contract to mint players with VRF2
     mintingProcess _mintingProcess;
@@ -34,12 +36,25 @@ contract Interface {
     bool[] has_team;
 
 
-    constructor(address mintingProcess_address, address svg_address, bool _vrf) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
-      _mintingProcess = mintingProcess(mintingProcess_address); // 0x8CFeDa3B85ec8Df81d0209c34EC7c38538fc496C
-      _svg = SVG(svg_address);  // 0x6f7Dc617174a2E17DCd659Dbef1231384fc962Af
+    // parameter for keeper
+    uint startTime;
+    uint startRaffel;
+    uint checkOracle;
+    uint lastOracle;
+
+
+    constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
+      _mintingProcess = mintingProcess(mintingProcess_address); //
+      _svg = SVG(svg_address);  //
       ownerAddress = msg.sender;
 
       vrf = _vrf;
+      keeper = _keeper;
+
+      startTime = block.timestamp;
+      lastOracle = 0;
+      startRaffel = _startRaffel * (1 minutes);
+      checkOracle = _checkOracle * (1 minutes);
 
       minting = true;
       upgrading = true;
@@ -51,7 +66,7 @@ contract Interface {
     function buyPlayer() external payable {
         require(minting==true,"No more buying is possible.");
         require(msg.value>=price,"Insufficent Funds, please send more ETH.");
-        require(msg.value<=(3 ether),"Please buy for less than 3 ETH");
+        require(msg.value<=0.3*(1 ether),"Please buy for less than .3 ETH");
 
         uint newPlayers = msg.value/price;
         // pay back the to much paid
@@ -161,10 +176,9 @@ contract Interface {
     /* To dos:
 
 
-      - Keeper:
-          - automatic initiate function of players
-          - Update Players (simulation of Oracle)
-          - automatically update player
+      - Oracle
+          - simulate them
+          - use a different one
 
       - Direct Swap between players
     */
@@ -201,7 +215,10 @@ contract Interface {
       }
 
 
-      function createDistributionForRaffel() external onlyOwner() {
+
+
+      // This will use the raffle
+      function _createDistributionForRaffel() internal {
         require(minting==true,"Raffel was done.");
         require(upgrading=true,"Raffel was done.");
 
@@ -250,6 +267,31 @@ contract Interface {
 
 
 
+
+
+      // update players
+      function _updatePlayer() internal {
+        // Here should be access to the Oracle
+
+        /* string[5] memory name = ["Noah Katterbach","Noah Katterbach"];
+        uint[5] gameplay; */
+
+
+        //  simulate Oracle
+        if (oracle==false){
+
+
+            _svg.updatePlayer("Noah Katterbach",766,8,1);
+            _svg.updatePlayer("Andy Pelmard",2267,24,0);
+            _svg.updatePlayer("Pajtim Kasami",1734,24,3);
+            _svg.updatePlayer("Liam Millar",1611,25,5);
+            _svg.updatePlayer("Heinz Lindner",2489,26,0);
+          }
+
+      }
+
+
+
     /*
       OWNER MANAGEMENT
       */
@@ -266,9 +308,73 @@ contract Interface {
 
 
     // Change if you use VRF (true) or simulation of VRF (false)
-    function changeVrf(bool _vrf) external onlyOwner() {
+    function changeSimulation(bool _vrf,bool _keeper,bool oracle) external onlyOwner() {
       vrf = _vrf;
+      keeper = _keeper;
+      oracle = _oracle;
     }
+
+
+
+
+
+
+
+
+
+
+    // Keeper manager
+    function checkUpkeep(bytes calldata) external view override returns (bool upkeepNeeded, bytes memory performData) {
+        upkeepNeeded  = _checkUpkeep();
+      }
+
+    function performUpkeep(bytes calldata performData ) external override {
+        _performUpkeep();
+    }
+
+
+    function _checkUpkeep() internal view returns (bool upkeepNeeded) {
+        // Stops everything after raffle
+        require(minting && upgrading);
+        // Update Oracle
+        if ( (block.timestamp-lastOracle)>checkOracle) {
+          upkeepNeeded = true;
+        }
+        // Raffel
+        if ( (block.timestamp-startTime)>startRaffel) {
+          upkeepNeeded = true;
+        }
+
+
+      }
+
+      function _performUpkeep() internal {
+          require(minting && upgrading);
+          // Stops everything after raffle
+
+          // Check Oracle
+          if  ( (block.timestamp-lastOracle)>checkOracle) {
+            lastOracle = block.timestamp;
+            _updatePlayer();
+          }
+          //Start Raffel
+          if ( (block.timestamp-startTime)>startRaffel) {
+            _createDistributionForRaffel();
+          }
+        }
+
+
+      // simulate keeper
+      function simulateKeeper() external onlyOwner() {
+        bool upkeepNeeded;
+        upkeepNeeded  = _checkUpkeep();
+
+        if (upkeepNeeded) {
+          _performUpkeep();
+        }
+
+      }
+
 
 
 }

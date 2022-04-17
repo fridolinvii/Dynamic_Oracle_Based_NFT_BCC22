@@ -156,7 +156,7 @@ contract SVG is ERC1155 {
 
 
 
-    function updatePlayer(string memory _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external onlyOwner() {
+    function updatePlayer(string memory _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
 
       uint[] memory tokenId = playerNameToIndex[_playerName];
       for (uint i=0; i<tokenId.length; i++){
