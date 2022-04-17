@@ -9,10 +9,10 @@ import "./svg.sol";
 contract Interface is KeeperCompatibleInterface {
 
 
-    // use vrf (true) or simulate vrf (false)
+    // use vrf/keeper/oracle (true) or simulate vrf/keeper/oracle (false)
     bool vrf;
-    // use keeper (true) or simulate keeper (false)
     bool keeper;
+    bool oracle;
 
     // It interacts with the smart Contract to mint players with VRF2
     mintingProcess _mintingProcess;
@@ -43,13 +43,20 @@ contract Interface is KeeperCompatibleInterface {
     uint lastOracle;
 
 
-    constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
+    // update player statistic for oracle simulation
+    uint[5] time;
+    uint[5] games;
+    uint[5] score;
+
+
+    constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, bool _oracle, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
       _mintingProcess = mintingProcess(mintingProcess_address); //
       _svg = SVG(svg_address);  //
       ownerAddress = msg.sender;
 
       vrf = _vrf;
       keeper = _keeper;
+      oracle = _oracle;
 
       startTime = block.timestamp;
       lastOracle = 0;
@@ -273,19 +280,25 @@ contract Interface is KeeperCompatibleInterface {
       function _updatePlayer() internal {
         // Here should be access to the Oracle
 
-        /* string[5] memory name = ["Noah Katterbach","Noah Katterbach"];
-        uint[5] gameplay; */
-
-
         //  simulate Oracle
         if (oracle==false){
 
+            for (uint i=0; i<time.length; i++) {
+              uint randomNumber = uint(keccak256(abi.encodePacked(block.timestamp,i)));
+              games[i] += randomNumber % 2;
+              if ((randomNumber % 2)>0) { // only update if the player plaid
+                  time[i] += 30+(randomNumber % 60);
+                  score[i] += (randomNumber % 3);
+              }
+              _svg.updatePlayer(i, time[i], games[i], score[i]);
+            }
 
-            _svg.updatePlayer("Noah Katterbach",766,8,1);
+
+            /* _svg.updatePlayer("Noah Katterbach",766,8,1);
             _svg.updatePlayer("Andy Pelmard",2267,24,0);
             _svg.updatePlayer("Pajtim Kasami",1734,24,3);
             _svg.updatePlayer("Liam Millar",1611,25,5);
-            _svg.updatePlayer("Heinz Lindner",2489,26,0);
+            _svg.updatePlayer("Heinz Lindner",2489,26,0); */
           }
 
       }
@@ -308,7 +321,7 @@ contract Interface is KeeperCompatibleInterface {
 
 
     // Change if you use VRF (true) or simulation of VRF (false)
-    function changeSimulation(bool _vrf,bool _keeper,bool oracle) external onlyOwner() {
+    function changeSimulation(bool _vrf,bool _keeper,bool _oracle) external onlyOwner() {
       vrf = _vrf;
       keeper = _keeper;
       oracle = _oracle;

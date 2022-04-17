@@ -75,7 +75,7 @@ def main():
 
 
     ## Include interface
-    i = Interface.deploy(m.address, c.address, False, 10, 5, {'from': me})
+    i = Interface.deploy(m.address, c.address, False, False, False, 100, 10, {'from': me})
     # give m access to c
     c.changeMintingProcess(m.address, i.address, {'from': me})
     m.changeInterfaceAddress(i.address, {'from': me});
@@ -134,12 +134,14 @@ def main():
 
     # simulate Keeper
     html2 = data2svg(c.uri(0))
-    # updates player
-    i.simulateKeeper({'from': me})
-    html2 += data2svg(c.uri(0))
+    # updates player and end calls raffle
+    for j in range(10):
+        i.simulateKeeper({'from': me})
+        html2 += data2svg(c.uri(0))
+        # sleep 10 min
+        chain.sleep(10*60)
 
-    # sleep for 10 minutes --> calls raffle
-    chain.sleep(10*60)
+
     i.simulateKeeper({'from': me})
 
 

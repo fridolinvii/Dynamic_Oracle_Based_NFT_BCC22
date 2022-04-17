@@ -156,7 +156,22 @@ contract SVG is ERC1155 {
 
 
 
-    function updatePlayer(string memory _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
+    // function updatePlayer(string calldata _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
+    function updatePlayer(uint player, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
+
+      string memory _playerName;
+      if (player == 0) {
+        _playerName = "Noah Katterbach";
+      } else if (player == 1) {
+        _playerName = "Andy Pelmard";
+      } else if (player == 2) {
+        _playerName = "Pajtim Kasami";
+      } else if (player == 3) {
+        _playerName = "Liam Millar";
+      } else if (player == 4) {
+        _playerName = "Heinz Lindner";
+      }
+
 
       uint[] memory tokenId = playerNameToIndex[_playerName];
       for (uint i=0; i<tokenId.length; i++){
