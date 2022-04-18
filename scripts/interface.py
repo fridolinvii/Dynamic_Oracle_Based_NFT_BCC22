@@ -44,39 +44,25 @@ def main():
     a1 = accounts[1]
 
 
+
+    # Setup the Smart Contract
+
     nk = NoahKatterbach.deploy({'from': me})
     ap = AndyPelmard.deploy({'from': me})
     pk = PajtimKasami.deploy({'from': me})
     lm = LiamMillar.deploy({'from': me})
     hl = HeinzLindner.deploy({'from': me})
 
-
     getSVG = getPlayerSvg.deploy(ap.address, lm.address, nk.address, pk.address, hl.address, {'from': me})
 
     c = SVG.deploy(getSVG.address, {'from': me})
-    html = data2svg(c.uri(19))
-
-    # add 5 players
-    #addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals )
-    # c.addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
-    # c.addPlayer("Noah Katterbach","Defence",766,8,1);
-    # c.addPlayer("Andy Pelmard","Defence",2267,24,0);
-    # c.addPlayer("Pajtim Kasami","Midfield",1734,24,3);
-    # c.addPlayer("Liam Millar","Offense",1611,25,5);
-
-
-
-    ##  Include random minting process
-
-    # print("this should work")
-    # c.mintPlayer(0,me,10,{'from': me})
-
     m = mintingProcess.deploy(2103,c.address, {'from': me});
 
-
     ## Include interface
+    # raffle after 100min, update statistic after 10min
+    # (vrf,keeper,oracle) = (false,false,false) -> Note: oracle = true will do nothing (oracle not implemented)
     i = Interface.deploy(m.address, c.address, False, False, False, 100, 10, {'from': me})
-    # give m access to c
+    # Give the contracts execution writhe on the needed contracts
     c.changeMintingProcess(m.address, i.address, {'from': me})
     m.changeInterfaceAddress(i.address, {'from': me});
 

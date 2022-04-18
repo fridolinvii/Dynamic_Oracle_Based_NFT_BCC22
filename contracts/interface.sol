@@ -349,17 +349,19 @@ contract Interface is KeeperCompatibleInterface {
 
     // Keeper manager
     function checkUpkeep(bytes calldata) external view override returns (bool upkeepNeeded, bytes memory performData) {
+        require(keeper);
         upkeepNeeded  = _checkUpkeep();
       }
 
     function performUpkeep(bytes calldata performData ) external override {
+        require(keeper);
         _performUpkeep();
     }
 
 
     function _checkUpkeep() internal view returns (bool upkeepNeeded) {
         // Stops everything after raffle
-        require(minting && upgrading && keeper);
+        require(minting && upgrading);
         // Update Oracle
         if ( (block.timestamp-lastOracle)>checkOracle) {
           upkeepNeeded = true;
@@ -373,7 +375,7 @@ contract Interface is KeeperCompatibleInterface {
       }
 
       function _performUpkeep() internal {
-          require(minting && upgrading && keeper);
+          require(minting && upgrading);
           // Stops everything after raffle
 
           // Check Oracle
@@ -390,7 +392,7 @@ contract Interface is KeeperCompatibleInterface {
 
       // simulate keeper
       function simulateKeeper() external onlyOwner() {
-        require(keeper == false, "Please set keeper to false.")
+        require(keeper == false, "Please set keeper to false.");
         bool upkeepNeeded;
         upkeepNeeded  = _checkUpkeep();
 
