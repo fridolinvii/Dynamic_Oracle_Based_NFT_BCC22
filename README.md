@@ -46,4 +46,15 @@ Deploy the contract in *mintingProcess.sol* with the address from Step 3. If you
 Deploy the contract in *interface.sol* with the addresses of the contracts from Step 3 and Step 4. When you want to use VRF set `vrf=true` and if you want to use the Keeper use `keeper=true`. Currently only simulation of Oracle exists, therefore you should set `oracle=false`. In addition you can set after how man minutes the raffle should begin and after how many minutes the statistic of the player should be updated. It is currently set to minutes, to easily see the progress. However it can be changes in the constructor to days. After deploing the contract register this addres in https://keepers.chain.link/. To ensure, that the keeper is working, set the maximum Gasprice to its maximum (2'500'000).
 - Interface
 
-### Step 6 
+### Step 6
+Give access to the contract, so they can comunicate with each other.
+- *mintingProcess* run the function *changeInterfaceAddress("Interface address")*
+- *SVG* run the function *changeMintingProcess("mintingProcess address", "Interface address")*
+
+### Step 7
+Now you can buy and upgrade NFTs until the raffle in *Interface*
+
+
+
+## Brownie
+For a better overview, where VRF and Keeper are deactivate you can checkout *interface.py* or run `brownie run interface` (https://eth-brownie.readthedocs.io/)
