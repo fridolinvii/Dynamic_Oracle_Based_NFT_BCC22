@@ -47,6 +47,8 @@ contract Interface is KeeperCompatibleInterface {
     uint[5] time;
     uint[5] games;
     uint[5] score;
+    uint[5] assist;
+    uint saves = 0; // only goalkeeper
 
 
     constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, bool _oracle, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
@@ -239,10 +241,12 @@ contract Interface is KeeperCompatibleInterface {
           uint points = 0;
           uint player_count = 0;
           for (uint i = 0; i<5; i++) {
-            uint _points = 50*_svg.balanceOf(_nft_addresses[a],i*4);
-            _points += 200*_svg.balanceOf(_nft_addresses[a],i*4+1);
-            _points += 750*_svg.balanceOf(_nft_addresses[a],i*4+2);
-            _points += 2500*_svg.balanceOf(_nft_addresses[a],i*4+3);
+            uint _points = 1*_svg.balanceOf(_nft_addresses[a],i*4);
+            _points += 4*_svg.balanceOf(_nft_addresses[a],i*4+1);
+            _points += 15*_svg.balanceOf(_nft_addresses[a],i*4+2);
+            _points += 30*_svg.balanceOf(_nft_addresses[a],i*4+3);
+
+            _points *= _svg.getScoreFromPlayer(i*4);
 
             // Check if they have a player
             if (_points>0) {
@@ -289,8 +293,15 @@ contract Interface is KeeperCompatibleInterface {
               if ((randomNumber % 2)>0) { // only update if the player plaid
                   time[i] += 30+(randomNumber % 60);
                   score[i] += (randomNumber % 3);
+                  assist[i] += (randomNumber % 3);
+                  if (i==0) { //This is goalkeeper
+                      saves += 10+(randomNumber % 50);
+                      _svg.updatePlayer(i, time[i], games[i], score[i], 0, saves);
+                  } else {
+                      _svg.updatePlayer(i, time[i], games[i], score[i], assist[i], 0);
+                  }
               }
-              _svg.updatePlayer(i, time[i], games[i], score[i]);
+
             }
 
 
@@ -348,7 +359,7 @@ contract Interface is KeeperCompatibleInterface {
 
     function _checkUpkeep() internal view returns (bool upkeepNeeded) {
         // Stops everything after raffle
-        require(minting && upgrading);
+        require(minting && upgrading && keeper);
         // Update Oracle
         if ( (block.timestamp-lastOracle)>checkOracle) {
           upkeepNeeded = true;
@@ -362,7 +373,7 @@ contract Interface is KeeperCompatibleInterface {
       }
 
       function _performUpkeep() internal {
-          require(minting && upgrading);
+          require(minting && upgrading && keeper);
           // Stops everything after raffle
 
           // Check Oracle
@@ -379,6 +390,7 @@ contract Interface is KeeperCompatibleInterface {
 
       // simulate keeper
       function simulateKeeper() external onlyOwner() {
+        require(keeper == false, "Please set keeper to false.")
         bool upkeepNeeded;
         upkeepNeeded  = _checkUpkeep();
 

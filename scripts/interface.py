@@ -75,7 +75,7 @@ def main():
 
 
     ## Include interface
-    i = Interface.deploy(m.address, c.address, False, {'from': me})
+    i = Interface.deploy(m.address, c.address, False, False, False, 100, 10, {'from': me})
     # give m access to c
     c.changeMintingProcess(m.address, i.address, {'from': me})
     m.changeInterfaceAddress(i.address, {'from': me});
@@ -83,7 +83,7 @@ def main():
     # print("this should fail")
     # m.buyPlayer_noVrf(me, 100, {'from': me});
 
-    i.buyPlayer({'from': a1, 'amount':  '1 ether'})
+    i.buyPlayer({'from': a1, 'amount':  '0.1 ether'})
     i.withDraw(me, {'from': me})
 
 
@@ -99,7 +99,7 @@ def main():
     for j in range(5):
         print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
 
-    i.buyPlayer({'from': a1, 'amount':  '1 ether'})
+    i.buyPlayer({'from': a1, 'amount':  '0.1 ether'})
     print("Balance of minted Players After upgrade")
     for j in range(5):
         print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
@@ -117,11 +117,11 @@ def main():
     # add additional players
 
     for j in range(1,10):
-        i.buyPlayer({'from': a[j], 'amount':  '0.1 ether'})
+        i.buyPlayer({'from': a[j], 'amount':  '0.01 ether'})
         i.upgradeAllToMax({'from': a[j]})
 
     for j in range(1,5):
-        i.buyPlayer({'from': a[j], 'amount':  '2 ether'})
+        i.buyPlayer({'from': a[j], 'amount':  '0.2 ether'})
         i.upgradeAllToMax({'from': a[j]})
 
 
@@ -132,14 +132,20 @@ def main():
 
 
 
-    #print(nft_address)
-    #print([a1,a[2],a[3],a[4]])
+    # simulate Keeper
+    html2 = data2svg(c.uri(0))
+    # updates player and end calls raffle
+    for j in range(10):
+        i.simulateKeeper({'from': me})
+        html2 += data2svg(c.uri(0))
+        # sleep 10 min
+        chain.sleep(10*60)
 
-    print("createDistributionForRaffel")
-    i.createDistributionForRaffel();
-    print("nft_address")
+
+    i.simulateKeeper({'from': me})
+
+
     nft_address = i.getAddresses({'from': me})
-
     # Winner NFT
     for j in range(len(nft_address)):
         if c.balanceOf(nft_address[j],1001):
@@ -235,6 +241,9 @@ def main():
 
     disp1 = DisplaySVG(svg=html)
     disp1.show()
+    app.exec_()
+    disp2 = DisplaySVG(svg=html2)
+    disp2.show()
     app.exec_()
 
 

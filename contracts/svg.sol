@@ -14,7 +14,12 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 
 
-contract SVG is ERC1155 {
+contract SVG is ERC1155, PlayerDetail {
+
+
+
+
+    playerDetail[] _playerDetail;
 
     getPlayerSvg getPlayer;
     using Strings for uint; // Allows to convert uints to strings
@@ -24,13 +29,9 @@ contract SVG is ERC1155 {
     bool flag; // Determines the background color of the NFT
 
 
-    // Informations for the NFT
-    uint[] gameplay;
-    uint[] numberOfGames;
-    uint[] goals;
-    uint[] level;
-    string[] position;
-    string[] playersName;
+
+
+
     mapping (string => uint[]) playerNameToIndex;
     mapping (uint => uint) distributionForRaffel;
     mapping(uint => uint) score; // Shows scores on the unique NFTs
@@ -45,11 +46,11 @@ contract SVG is ERC1155 {
 
       // Add players
 
-      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0);
-      _addPlayer("Noah Katterbach","Defence",0,0,0);
-      _addPlayer("Andy Pelmard","Defence",0,0,0);
-      _addPlayer("Pajtim Kasami","Midfield",0,0,0);
-      _addPlayer("Liam Millar","Offense",0,0,0);
+      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0,0,0);
+      _addPlayer("Noah Katterbach","Defence",0,0,0,0,0);
+      _addPlayer("Andy Pelmard","Defence",0,0,0,0,0);
+      _addPlayer("Pajtim Kasami","Midfield",0,0,0,0,0);
+      _addPlayer("Liam Millar","Offense",0,0,0,0,0);
 
       /* _addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
       _addPlayer("Noah Katterbach","Defence",766,8,1);
@@ -138,16 +139,12 @@ contract SVG is ERC1155 {
 
 
 
-    function _addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals ) internal {
+    function _addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals, uint _assist, uint _saves ) internal {
 
         for (uint i = 0; i<4; i++) {
-          playersName.push(_playersName);
-          position.push(_position);
-          gameplay.push(_gameplay);
-          numberOfGames.push(_numberOfGames);
-          goals.push(_goals);
-          level.push(i);
-          playerNameToIndex[_playersName].push(playersName.length-1);
+          uint _level = i;
+          _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName));
+          playerNameToIndex[_playersName].push(_playerDetail.length-1);
         }
     }
 
@@ -157,27 +154,30 @@ contract SVG is ERC1155 {
 
 
     // function updatePlayer(string calldata _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
-    function updatePlayer(uint player, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
+    function updatePlayer(uint player, uint _gameplay, uint _numberOfGames, uint _goals, uint _assist, uint _saves) external mintingProcess()  {
 
+      // player has nothing to do with tokenId!
       string memory _playerName;
-      if (player == 0) {
+      if (player == 4) {
         _playerName = "Noah Katterbach";
-      } else if (player == 1) {
+      } else if (player == 3) {
         _playerName = "Andy Pelmard";
       } else if (player == 2) {
         _playerName = "Pajtim Kasami";
-      } else if (player == 3) {
+      } else if (player == 1) {
         _playerName = "Liam Millar";
-      } else if (player == 4) {
+      } else if (player == 0) {
         _playerName = "Heinz Lindner";
       }
 
 
       uint[] memory tokenId = playerNameToIndex[_playerName];
       for (uint i=0; i<tokenId.length; i++){
-        gameplay[tokenId[i]] = _gameplay;
-        numberOfGames[tokenId[i]] = _numberOfGames;
-        goals[tokenId[i]] = _goals;
+        _playerDetail[tokenId[i]].gameplay = _gameplay;
+        _playerDetail[tokenId[i]].numberOfGames = _numberOfGames;
+        _playerDetail[tokenId[i]].goals = _goals;
+        _playerDetail[tokenId[i]].saves = _saves;
+        _playerDetail[tokenId[i]].assist = _assist;
       }
     }
 
@@ -190,7 +190,7 @@ contract SVG is ERC1155 {
 
 
         if (tokenId<1001) { //normal NFT
-          star = level[tokenId];
+          star = _playerDetail[tokenId].level;
           _tokenId = tokenId;
           _img_description = img_description;
         }
@@ -222,9 +222,12 @@ contract SVG is ERC1155 {
         }
 
         uint _score = score[tokenId];
-        string memory svg = getPlayer.getSVG(gameplay[_tokenId], numberOfGames[_tokenId], goals[_tokenId], playersName[_tokenId], position[_tokenId], star, tokenId, _score);
+        // details calldata _details = details(gameplay[_tokenId],numberOfGames[_tokenId],goals[_tokenId],playersName[_tokenId], position[_tokenId],assist[_tokenId],saves[_tokenId]);
+
+        playerDetail memory _details = _playerDetail[_tokenId];
+        string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
         output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked(
-            '{"name": "', playersName[_tokenId], '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
+            '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
         ))))));
 
     }
@@ -232,6 +235,15 @@ contract SVG is ERC1155 {
   // Add score to each unique NFT
   function addScore(uint tokenId,uint _score) external mintingProcess() {
     score[tokenId] = _score;
+  }
+
+  // get score from player
+  /*
+    score = 1 + numberOfGames + gameplay/10 + goals + assist + saves/20
+    */
+  function getScoreFromPlayer(uint tokenId)
+        external view  mintingProcess() returns (uint score) {
+          score = 1 + _playerDetail[tokenId].numberOfGames + _playerDetail[tokenId].gameplay/10 + _playerDetail[tokenId].goals + _playerDetail[tokenId].assist + _playerDetail[tokenId].saves;
   }
 }
 /// [MIT License]
