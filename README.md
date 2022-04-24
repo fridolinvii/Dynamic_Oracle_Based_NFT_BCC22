@@ -1,7 +1,9 @@
 # Dynamic Oracle Based NFT BCC22
 
+#### Disclamer
 This project is from the Blockchain Challenge 2022 #BCC22 in cooperation with Chainlink.
-https://wwz.unibas.ch/de/dltfintech/blockchain-challenge/
+https://wwz.unibas.ch/de/dltfintech/blockchain-challenge/ . This contract is solely for private use.
+If you have questions, please contact any of the developer (#BCC22, Team 2 (Chainlink)).
 
 We create dynamic football trading cards. Which dynamically updates the statistics of the player.
 Having 3 of the same cards gives the option to upgrade the cards (up to 3 times).
@@ -52,7 +54,7 @@ Give access to the contract so that they can communicate with each other.
 - *SVG* run the function *changeMintingProcess("mintingProcess address", "Interface address")*
 
 ### Step 7
-Now you can buy and upgrade NFTs until the raffle in *Interface*
+Now you can buy and upgrade NFTs until the raffle in *Interface*. You can also send 0.1-0.3 ETH to the contract address to get the trading cards.
 
 
 

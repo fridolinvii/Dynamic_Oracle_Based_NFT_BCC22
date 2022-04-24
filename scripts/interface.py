@@ -98,6 +98,20 @@ def main():
 
 
 
+
+    # CHECK IF RECIEVE works
+    print("\n CHECK IF RECIEVE WORKS\n")
+    print("Balance of minted Players")
+    for j in range(5):
+        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
+
+    # buy player with recieve()
+    a1.transfer(i.address, "0.2 ether")
+    for j in range(5):
+        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
+
+
+
     ## RAFFLE
 
     # add additional players
@@ -156,6 +170,10 @@ def main():
 
 
 
+
+
+
+    #i.upgradeAllToMax({'from': a1})
 
 
     ############################################################################
@@ -233,4 +251,4 @@ def main():
     app.exec_()
 
 
-    return i , c
+    return i  , c

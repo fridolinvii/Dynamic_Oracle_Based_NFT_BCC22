@@ -71,22 +71,35 @@ contract Interface is KeeperCompatibleInterface {
 
 
 
-    // Everybody can get a player
-    function buyPlayer() external payable {
-        require(minting==true,"No more buying is possible.");
-        require(msg.value>=price,"Insufficent Funds, please send more ETH.");
-        require(msg.value<=0.3*(1 ether),"Please buy for less than .3 ETH");
 
-        uint newPlayers = msg.value/price;
+    // Buy players with sending eth
+    receive() external payable {
+        _buyPlayer(msg.value, msg.sender);
+    }
+
+    // Buy player with function
+    function buyPlayer() external payable {
+        _buyPlayer(msg.value, msg.sender);
+    }
+
+
+    // buy player
+    function _buyPlayer(uint msgvalue, address msgsender) internal {
+        require(minting==true,"No more buying is possible.");
+        require(msgvalue>=price,"Insufficent Funds, please send more ETH.");
+        require(msgvalue<=0.3*(1 ether),"Please buy for less than .3 ETH");
+
+        uint newPlayers = msgvalue/price;
         // pay back the to much paid
-        if (newPlayers*price<msg.value) {
-          payable(msg.sender).transfer(msg.value-newPlayers*price);
+        if (newPlayers*price<msgvalue) {
+          payable(msgsender).transfer(msgvalue-newPlayers*price);
         }
 
         accumaltedPayment += newPlayers*price;
 
         // mint random players with the help of vrf
-        _mintingProcess.buyPlayer(msg.sender,newPlayers, vrf);
+        _mintingProcess.buyPlayer(msgsender,newPlayers, vrf);
+
     }
 
 
