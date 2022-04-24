@@ -9,12 +9,12 @@ import "./players.sol";
 contract PlayerDetail {
     struct playerDetail {
       // Informations for the NFT
-      uint gameplay;
-      uint numberOfGames;
-      uint goals;
-      uint level;
-      uint saves;
-      uint assist;
+      uint16 gameplay;
+      uint16 numberOfGames;
+      uint16 goals;
+      uint16 level;
+      uint16 saves;
+      uint16 assist;
       string position;
       string playersName;
     }

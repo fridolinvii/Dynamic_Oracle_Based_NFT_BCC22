@@ -34,7 +34,7 @@ contract SVG is ERC1155, PlayerDetail {
 
     mapping (string => uint[]) playerNameToIndex;
     mapping (uint => uint) distributionForRaffel;
-    mapping(uint => uint) score; // Shows scores on the unique NFTs
+    mapping (uint => uint) score; // Shows scores on the unique NFTs
 
     address ownerOfContract;
     address[2] contractOfMintingProcess;
@@ -139,10 +139,10 @@ contract SVG is ERC1155, PlayerDetail {
 
 
 
-    function _addPlayer(string memory _playersName, string memory _position, uint _gameplay, uint _numberOfGames, uint _goals, uint _assist, uint _saves ) internal {
+    function _addPlayer(string memory _playersName, string memory _position, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves ) internal {
 
-        for (uint i = 0; i<4; i++) {
-          uint _level = i;
+        for (uint16 i = 0; i<4; i++) {
+          uint16 _level = i;
           _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName));
           playerNameToIndex[_playersName].push(_playerDetail.length-1);
         }
@@ -154,7 +154,7 @@ contract SVG is ERC1155, PlayerDetail {
 
 
     // function updatePlayer(string calldata _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
-    function updatePlayer(uint player, uint _gameplay, uint _numberOfGames, uint _goals, uint _assist, uint _saves) external mintingProcess()  {
+    function updatePlayer(uint player, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves) external mintingProcess()  {
 
       // player has nothing to do with tokenId!
       string memory _playerName;
@@ -244,12 +244,12 @@ contract SVG is ERC1155, PlayerDetail {
 
     */
   function getScoreFromPlayer(uint tokenId)
-        external view  mintingProcess() returns (uint score) {
+        external view  mintingProcess() returns (uint _score) {
           uint mult = 1;
           if (keccak256(abi.encodePacked("Defence"))==keccak256(abi.encodePacked(_playerDetail[tokenId].position))) {
             mult = 2;
           }
-          score = 1 + _playerDetail[tokenId].numberOfGames + _playerDetail[tokenId].gameplay/10 + mult*(_playerDetail[tokenId].goals + _playerDetail[tokenId].assist) + _playerDetail[tokenId].saves;
+          _score = 1 + _playerDetail[tokenId].numberOfGames + _playerDetail[tokenId].gameplay/10 + mult*(_playerDetail[tokenId].goals + _playerDetail[tokenId].assist) + _playerDetail[tokenId].saves;
   }
 }
 /// [MIT License]

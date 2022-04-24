@@ -44,11 +44,11 @@ contract Interface is KeeperCompatibleInterface {
 
 
     // update player statistic for oracle simulation
-    uint[5] time;
-    uint[5] games;
-    uint[5] score;
-    uint[5] assist;
-    uint saves = 0; // only goalkeeper
+    uint16[5] time;
+    uint16[5] games;
+    uint16[5] score;
+    uint16[5] assist;
+    uint16 saves = 0; // only goalkeeper
 
 
     constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, bool _oracle, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
@@ -288,7 +288,7 @@ contract Interface is KeeperCompatibleInterface {
         if (oracle==false){
 
             for (uint i=0; i<time.length; i++) {
-              uint randomNumber = uint(keccak256(abi.encodePacked(block.timestamp,i)));
+              uint16 randomNumber = uint16(uint((keccak256(abi.encodePacked(block.timestamp,i)))));
               games[i] += randomNumber % 2;
               if ((randomNumber % 2)>0) { // only update if the player plaid
                   time[i] += 30+(randomNumber % 60);
