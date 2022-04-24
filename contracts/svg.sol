@@ -239,11 +239,17 @@ contract SVG is ERC1155, PlayerDetail {
 
   // get score from player
   /*
-    score = 1 + numberOfGames + gameplay/10 + goals + assist + saves/20
+    for all player (except defence) mult = 1, for defence mult = 2
+    score = 1 + numberOfGames + gameplay/10 + mult*(goals + assist) + saves/20
+
     */
   function getScoreFromPlayer(uint tokenId)
         external view  mintingProcess() returns (uint score) {
-          score = 1 + _playerDetail[tokenId].numberOfGames + _playerDetail[tokenId].gameplay/10 + _playerDetail[tokenId].goals + _playerDetail[tokenId].assist + _playerDetail[tokenId].saves;
+          uint mult = 1;
+          if (keccak256(abi.encodePacked("Defence"))==keccak256(abi.encodePacked(_playerDetail[tokenId].position))) {
+            mult = 2;
+          }
+          score = 1 + _playerDetail[tokenId].numberOfGames + _playerDetail[tokenId].gameplay/10 + mult*(_playerDetail[tokenId].goals + _playerDetail[tokenId].assist) + _playerDetail[tokenId].saves;
   }
 }
 /// [MIT License]

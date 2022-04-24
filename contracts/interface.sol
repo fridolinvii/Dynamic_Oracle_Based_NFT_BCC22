@@ -293,7 +293,7 @@ contract Interface is KeeperCompatibleInterface {
               if ((randomNumber % 2)>0) { // only update if the player plaid
                   time[i] += 30+(randomNumber % 60);
                   score[i] += (randomNumber % 3);
-                  assist[i] += (randomNumber % 3);
+                  assist[i] += (randomNumber % 4);
                   if (i==0) { //This is goalkeeper
                       saves += 10+(randomNumber % 50);
                       _svg.updatePlayer(i, time[i], games[i], score[i], 0, saves);

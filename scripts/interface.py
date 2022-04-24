@@ -119,11 +119,11 @@ def main():
 
 
     # simulate Keeper
-    html2 = data2svg(c.uri(0))
+    html2 = data2svg(c.uri(8))
     # updates player and end calls raffle
     for j in range(10):
         i.simulateKeeper({'from': me})
-        html2 += data2svg(c.uri(0))
+        html2 += data2svg(c.uri(8))
         # sleep 10 min
         chain.sleep(10*60)
 
