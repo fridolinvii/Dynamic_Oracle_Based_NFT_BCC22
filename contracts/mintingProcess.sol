@@ -8,6 +8,20 @@ import "./svg.sol";
 // import "./translateNumber.sol";
 
 contract mintingProcess is VRFConsumerBaseV2 {
+
+
+  // Events
+  event WinnerNFT(uint indexed place, uint tokenId, address indexed owner);
+  event TeanNFT(uint tokenId, address indexed owner);
+  event UniqueNFT(uint tokenId, address indexed owner);
+
+
+
+
+
+  ////////////////////////////////////////////////////
+
+
   VRFCoordinatorV2Interface COORDINATOR;
   SVG svg;
   // translateNumber randNumber;
@@ -65,7 +79,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
   constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
     COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
-    svg = SVG(svg_address); // 
+    svg = SVG(svg_address); //
     // randNumber = translateNumber(translateNumber_address);
     s_owner = msg.sender;
     interface_address = msg.sender;
@@ -116,11 +130,15 @@ contract mintingProcess is VRFConsumerBaseV2 {
           // minting total Points of all tokens
           svg.mintPlayer(mintingUnique+i,nft_addresses[i],1);
           svg.addScore(mintingUnique+i,distributionForRaffel[i]);
+          emit UniqueNFT(mintingUnique+i, nft_addresses[i]);
           if (has_team[i]==true) {
             // Get an NFT, if owner of the team
-            svg.mintPlayer(mintingUnique_team++,nft_addresses[i],1);
+            svg.mintPlayer(mintingUnique_team,nft_addresses[i],1);
+            emit TeanNFT(mintingUnique_team, nft_addresses[i]);
+            mintingUnique_team += 1;
           }
         }
+
 
 
       // Will revert if subscription is not set and funded.
@@ -216,7 +234,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
       uint randomNumber = s_randomWords;
       // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
 
-      
+
 
       if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
         uint max_points = 0;
@@ -237,20 +255,24 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
         */
 
+
         // To Do: Make Winners unique
         for (uint i=0; i<distributionForRaffel.length; i++) {
           sum_points += distributionForRaffel[i];
           if (sum_points>winner_1) {
             svg.mintPlayer(1001,nft_addresses[i],1);
             winner_1 = max_points;
+            emit WinnerNFT(1, 1001, nft_addresses[i]);
           }
           if (sum_points>winner_2) {
             svg.mintPlayer(1002,nft_addresses[i],1);
             winner_2 = max_points;
+            emit WinnerNFT(2, 1002, nft_addresses[i]);
           }
           if (sum_points>winner_3) {
             svg.mintPlayer(1003,nft_addresses[i],1);
             winner_3 = max_points;
+            emit WinnerNFT(3, 1003, nft_addresses[i]);
           }
         }
       }

@@ -17,6 +17,11 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 contract SVG is ERC1155, PlayerDetail {
 
 
+    // Events
+    event Minting(uint idx, address indexed nftOwner, uint numberOfPlayer);
+    
+
+
 
 
     playerDetail[] _playerDetail;
@@ -95,6 +100,9 @@ contract SVG is ERC1155, PlayerDetail {
     function mintPlayer(uint idx, address nftOwner, uint numberOfPlayer) external mintingProcess(){
       // requirement should be added that only player n%4 can be minted here
         _mint(nftOwner, idx, numberOfPlayer, "");
+
+        // Events
+        emit Minting(idx, nftOwner, numberOfPlayer);
     }
 
     function addDistribution(uint[] calldata _distributionForRaffel) external mintingProcess() {

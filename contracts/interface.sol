@@ -8,6 +8,16 @@ import "./svg.sol";
 
 contract Interface is KeeperCompatibleInterface {
 
+  // Events
+  event BuyPlayers(uint price, uint numberOfNewPlayers, address indexed owner);
+  event UpgradeAllTokens(address indexed owner);
+  event DrawWinnerOfRaffel();
+  event UpdatePlayer();
+  event TeanNFT(uint tokenId, address indexed owner);
+  event UniqueNFT(uint tokenId, address indexed owner);
+
+  //////////////////////////////////////////
+
 
     // use vrf/keeper/oracle (true) or simulate vrf/keeper/oracle (false)
     bool vrf;
@@ -52,6 +62,7 @@ contract Interface is KeeperCompatibleInterface {
 
 
     constructor(address mintingProcess_address, address svg_address, bool _vrf, bool _keeper, bool _oracle, uint _startRaffel, uint _checkOracle) {   //0x39B4F3cA83CE0f9C2e4Cd903fABDf3871D4AbcB1
+
       _mintingProcess = mintingProcess(mintingProcess_address); //
       _svg = SVG(svg_address);  //
       ownerAddress = msg.sender;
@@ -99,6 +110,10 @@ contract Interface is KeeperCompatibleInterface {
 
         // mint random players with the help of vrf
         _mintingProcess.buyPlayer(msgsender,newPlayers, vrf);
+
+
+        // Event
+        emit BuyPlayers(newPlayers*price, newPlayers, msgsender);
 
     }
 
@@ -187,29 +202,14 @@ contract Interface is KeeperCompatibleInterface {
           }
       }
 
+      emit UpgradeAllTokens(msg.sender);
+
     }
 
 
 
 
     // Function for just the owner
-
-
-    /* To dos:
-
-
-      - Oracle
-          - simulate them
-          - use a different one
-
-      - Direct Swap between players
-    */
-
-
-
-
-
-
 
 
     function withDraw(address _payout) external onlyOwner() {
@@ -285,6 +285,8 @@ contract Interface is KeeperCompatibleInterface {
 
         _mintingProcess.drawWinnerOfRaffel(distributionForRaffel,nft_addresses,has_team,vrf);
 
+        emit DrawWinnerOfRaffel();
+
 
 
       }
@@ -324,6 +326,10 @@ contract Interface is KeeperCompatibleInterface {
             _svg.updatePlayer("Liam Millar",1611,25,5);
             _svg.updatePlayer("Heinz Lindner",2489,26,0); */
           }
+
+
+
+          emit UpdatePlayer();
 
       }
 
