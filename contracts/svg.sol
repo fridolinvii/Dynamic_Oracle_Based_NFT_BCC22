@@ -11,14 +11,17 @@ import "./getPlayerSvg.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 
 
 contract SVG is ERC1155, PlayerDetail {
 
+    using Strings for uint; // Allows to convert uints to strings
 
     // Events
     event Minting(uint idx, address indexed nftOwner, uint numberOfPlayer);
+    ///////////////////////////////////////////////////////////////////////
 
 
 
@@ -29,7 +32,7 @@ contract SVG is ERC1155, PlayerDetail {
     getPlayerSvg getPlayer;
     using Strings for uint; // Allows to convert uints to strings
 
-    string img_name = "FC-Basel";
+    string img_name = "FC-Chainlink";
     string img_description = "Disclaimer: The scope of the project is within the Blockchain Challenge 2022 lecture offered by the University of Basel. The project will remain within the test net. The NFTs will never be sold nor is there any financial interest at hand by the owners or the course responsible."; // The images used are proprietary of https://www.fcb.ch . ";
     bool flag; // Determines the background color of the NFT
 
@@ -44,8 +47,8 @@ contract SVG is ERC1155, PlayerDetail {
     address ownerOfContract;
     address[2] contractOfMintingProcess;
 
-    constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x3D37c478EA971261fC9F66Ef15fbBb21F49dA7c2
+    constructor(address _getPlayerSVG) ERC1155("FC-Chainlink")  {
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0x8Ee48713CB7895483a2303831c3dd059BAf485F1
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 
@@ -234,10 +237,26 @@ contract SVG is ERC1155, PlayerDetail {
 
         playerDetail memory _details = _playerDetail[_tokenId];
         string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
-        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked(
-            '{"name": "', _playerDetail[_tokenId].playersName_fake, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
+        // output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked('{"name": "', _playerDetail[_tokenId].playersName_fake, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'))))));
+        string memory svg2 = string(abi.encodePacked('{"name": "', _details.playersName_fake, '",'
+            ' "description": "', _img_description, '",'
+            ' "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '",'
+            ' "attributes": ['));
+        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Name","value": "', _details.playersName_fake, '"},'
+              '{"trait_type": "Position","value": "', _details.position, '"},'
+              '{"trait_type": "Gameplay","value": "', Strings.toString(_details.gameplay), '"},'
+              '{"trait_type": "Games","value": "', Strings.toString(_details.numberOfGames), '"},'));
+        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
+              '{"trait_type": "Level","value": "', Strings.toString(_details.level), '"},'
+              '{"trait_type": "Saves","value": "', Strings.toString(_details.saves), '"},'
+              '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"}'
+            ']'
+            '}'));
+        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(svg2))));
+                    //'"trait_type: "Name", "value": "', _playerDetail[_tokenId].playersName_fake, '"
+            //' ]}}'
             // '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
-        ))))));
+        
 
     }
 
