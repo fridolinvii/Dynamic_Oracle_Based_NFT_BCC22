@@ -45,7 +45,7 @@ contract SVG is ERC1155, PlayerDetail {
     address[2] contractOfMintingProcess;
 
     constructor(address _getPlayerSVG) ERC1155("FC-Basel")  {
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x7d1Afa9ef8C19214D93CB27e5E4f5bc3708ed689
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0x3D37c478EA971261fC9F66Ef15fbBb21F49dA7c2
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 

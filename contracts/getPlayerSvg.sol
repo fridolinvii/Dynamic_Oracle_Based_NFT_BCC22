@@ -37,11 +37,11 @@ contract getPlayerSvg is PlayerDetail {
 
 
   constructor(address _AndyPelmard, address _LiamMillar, address _NoahKatterbach, address _PajtimKasami, address _HeinzLindner) {
-      andyPelmard = AndyPelmard(_AndyPelmard); // 0x6d69e58B136AE0c18f5ffF6d96D4e8Db74cf76a3
-      liamMillar = LiamMillar(_LiamMillar); // 0x6aa24b13A93ba61dd5675824f2b9e48bd5836bd3
-      noahKatterbach = NoahKatterbach(_NoahKatterbach); // 0x9692501c9F4B4EC92Ee0ed2C9130fb90508e17E9
-      pajtimKasami = PajtimKasami(_PajtimKasami); // 0x0Af2F3750c3741f575e18c47B86BA852dd7A667f
-      heinzLindner = HeinzLindner(_HeinzLindner); // 0xe115Cd70906EBd92aaA7b5249B8714BEA370e953
+      andyPelmard = AndyPelmard(_AndyPelmard); // 0xe92539b1D48d01e689Dd3EfD015b555bb2E2387c
+      liamMillar = LiamMillar(_LiamMillar); // 0x71B49A0eEc70426B747A7DB4F11a08f6e3D5efBE
+      noahKatterbach = NoahKatterbach(_NoahKatterbach); // 0x93667BB564E25cdC2718bEAbaC7551108960023f
+      pajtimKasami = PajtimKasami(_PajtimKasami); // 0x7887Fef2A1Bc934B0cca633F9c2A53C482Cd9169
+      heinzLindner = HeinzLindner(_HeinzLindner); // 0xfC14D3d9CeA7fA93b22DD329aECf42531Aa77514
   }
 
 

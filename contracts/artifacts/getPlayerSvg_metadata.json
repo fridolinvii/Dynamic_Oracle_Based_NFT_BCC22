@@ -39,29 +39,56 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "gameplay",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "numberOfGames",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "goals",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "position",
-						"type": "string"
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "gameplay",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "numberOfGames",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "goals",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "level",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "saves",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "assist",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "position",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "playersName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "playersName_fake",
+								"type": "string"
+							}
+						],
+						"internalType": "struct PlayerDetail.playerDetail",
+						"name": "_details",
+						"type": "tuple"
 					},
 					{
 						"internalType": "uint256",
@@ -127,11 +154,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
-			"keccak256": "0xb0f1f0a21ca84478365454552f4754bd175920c6572dcfec38950cb1a8fc32ca",
+			"keccak256": "0x253e70f46c8a2792255f2a4763b2c601b300c29a41a6dbb8b9bef8e7167a6512",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a36122711e0c03fc5587e52c0622eeaae0f4dd954cdc2e6900a36d3c180a48ea",
-				"dweb:/ipfs/QmYbf6xxipZGozccaY7RKJfUcJ6S8sQJgX3MfsGkZW6VLs"
+				"bzz-raw://958f896b2e94bf2bd5bd526dd462b316885389b305a2b972ea730e014b8a0900",
+				"dweb:/ipfs/QmXPBXEPoeVwTCyHAMGjqDyU9P4Nyvq9SwbutcsynPGSd3"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {

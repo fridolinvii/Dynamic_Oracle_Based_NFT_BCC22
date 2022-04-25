@@ -38,6 +38,69 @@
 				"type": "error"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "TeanNFT",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "UniqueNFT",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "place",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "WinnerNFT",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -283,19 +346,19 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
-			"keccak256": "0xb0f1f0a21ca84478365454552f4754bd175920c6572dcfec38950cb1a8fc32ca",
+			"keccak256": "0x253e70f46c8a2792255f2a4763b2c601b300c29a41a6dbb8b9bef8e7167a6512",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a36122711e0c03fc5587e52c0622eeaae0f4dd954cdc2e6900a36d3c180a48ea",
-				"dweb:/ipfs/QmYbf6xxipZGozccaY7RKJfUcJ6S8sQJgX3MfsGkZW6VLs"
+				"bzz-raw://958f896b2e94bf2bd5bd526dd462b316885389b305a2b972ea730e014b8a0900",
+				"dweb:/ipfs/QmXPBXEPoeVwTCyHAMGjqDyU9P4Nyvq9SwbutcsynPGSd3"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/mintingProcess.sol": {
-			"keccak256": "0xb523c680354fe3a1f01f732e3c53c53ae635a8e74b50a4c21ba8be6b59245a96",
+			"keccak256": "0xa96fa2a2af491f17e85b8b51c78c9628afb0f2d91af4a780d48c192be61c7776",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b30991d479b331e7b750944ce7a2fc31a9e8c66e9485dccb5831bc157286a707",
-				"dweb:/ipfs/QmdiwTvf6vBKR5xszi1onvgUs1E6hrWkS7aboNdALFHREX"
+				"bzz-raw://6c115a39de3e49719cd2c3ce6640e9986dc52b2b8aae83959f6a2ba3bd460789",
+				"dweb:/ipfs/Qmd5oLfF2soLPNpTxi7sdWSVLezGS5tUfysZBNKyyi2Zk4"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
@@ -307,11 +370,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0x539f5005f62060c10a34afcdf8183b743f2949ece1e3fa3b13c99fecfd3cc0d9",
+			"keccak256": "0x8f8d8f484b5c2cdebfe6689b12a659866ba60862f10e72b123fd202fac7a0f3d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ac0907e338b01ba82ccc2e339b4960594d31f06001733d1f61e052bfa846235f",
-				"dweb:/ipfs/QmYbmASfYXjDHe3jafvjCyn65mUL8fTPrMBvopVSpiPs16"
+				"bzz-raw://4d5b34647cc2294e4476f5ee51c174f04220ed8b14e44850e9412462b8fac3a4",
+				"dweb:/ipfs/QmdduQQDB1snznczvNiCa4NwnMS6ifGgQ9qNR5jJ2kpkTR"
 			]
 		}
 	},

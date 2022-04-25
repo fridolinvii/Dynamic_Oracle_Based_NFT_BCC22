@@ -54,9 +54,12 @@ Give access to the contract so that they can communicate with each other.
 - *SVG* run the function *changeMintingProcess("mintingProcess address", "Interface address")*
 
 ### Step 7
-Now you can buy and upgrade NFTs until the raffle in *Interface*. You can also send 0.1-0.3 ETH to the contract address to get the trading cards.
+Now you can buy and upgrade NFTs until the raffle in *Interface*. You can also send 0.1-0.3 ETH to the contract address from *Interface* to get the trading cards. To upgrade the trading cards, send 0 ETH to the contract address.
 
 
 
 ## Brownie
 For a better overview of where VRF and Keeper are deactivated, you can checkout *interface.py* or run `brownie run interface` (https://eth-brownie.readthedocs.io/)
+
+#### Special Thanks
+We used https://github.com/matnad/SVG-MVP for the infrastructure to save the NFTs on chain and https://github.com/fridolinvii/mystery_game to communicate between the smart contracts.

@@ -1,0 +1,61 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": "PlayerDetail"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x32c202bd28995dd20c4347b7c6467a6d3241c74c8ad3edcbb610cd9205916c45",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8179c356adb19e70d6b31a1eedc8c5c7f0c00e669e2540f4099e3844c6074d30",
+				"dweb:/ipfs/QmWFbivarEobbqhS1go64ootVuHfVohBseerYy9FTEd1W2"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
+			"keccak256": "0x253e70f46c8a2792255f2a4763b2c601b300c29a41a6dbb8b9bef8e7167a6512",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://958f896b2e94bf2bd5bd526dd462b316885389b305a2b972ea730e014b8a0900",
+				"dweb:/ipfs/QmXPBXEPoeVwTCyHAMGjqDyU9P4Nyvq9SwbutcsynPGSd3"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
+			"keccak256": "0xad28144931764b7751cb1f3f3ea46f3286103c0900a12367aaa179ca51a41f25",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c46037cd560d10b9214654f5642abdedb78d713ed0e7d852f8adc4ab2be6b62a",
+				"dweb:/ipfs/QmdNqjjmgUmtK9qU9hUH81q59FfJeRe9dRFAkxnvzTCbbK"
+			]
+		}
+	},
+	"version": 1
+}

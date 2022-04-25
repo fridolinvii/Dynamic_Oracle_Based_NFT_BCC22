@@ -99,16 +99,7 @@ def main():
 
 
 
-    # CHECK IF RECIEVE works
-    print("\n CHECK IF RECIEVE WORKS\n")
-    print("Balance of minted Players")
-    for j in range(5):
-        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
 
-    # buy player with recieve()
-    a1.transfer(i.address, "0.2 ether")
-    for j in range(5):
-        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
 
 
 
@@ -123,6 +114,25 @@ def main():
     for j in range(1,5):
         i.buyPlayer({'from': a[j], 'amount':  '0.2 ether'})
         i.upgradeAllToMax({'from': a[j]})
+
+
+
+
+
+    # CHECK IF RECIEVE works
+    print("\n CHECK IF RECIEVE WORKS\n")
+    print("Balance of minted Players")
+    for j in range(5):
+        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
+
+    # buy player with recieve()
+    a1.transfer(i.address, "0.2 ether")
+    for j in range(5):
+        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
+    a1.transfer(i.address, "0 ether")
+    for j in range(5):
+        print([c.balanceOf(a1,j*4),c.balanceOf(a1,j*4+1),c.balanceOf(a1,j*4+2),c.balanceOf(a1,j*4+3)])
+
 
 
     print("Withdraw ETH")

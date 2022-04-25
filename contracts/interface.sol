@@ -85,7 +85,11 @@ contract Interface is KeeperCompatibleInterface {
 
     // Buy players with sending eth
     receive() external payable {
-        _buyPlayer(msg.value, msg.sender);
+        if (msg.value>0) {
+          _buyPlayer(msg.value, msg.sender);
+        } else {
+          _upgradeAllToMax();
+        }
     }
 
     // Buy player with function
@@ -118,8 +122,26 @@ contract Interface is KeeperCompatibleInterface {
     }
 
 
+
     function upgradeAllToMax() external {
+      _upgradeAllToMax();
+    }
+
+    function _upgradeAllToMax() internal {
       require(upgrading==true,"No more upgrades are possible.");
+
+      // Check if it can be upgraded
+      bool upgradeable = false;
+      for (uint i = 0; i<5; i++){
+        if ( (_svg.balanceOf(msg.sender,4*i)>=3) || (_svg.balanceOf(msg.sender,4*i+1)>=3) || (_svg.balanceOf(msg.sender,4*i+2)>=3) )  {
+            upgradeable = true;
+            break;
+        }
+      }
+      require(upgradeable==true, "All cards are at maximum.");
+
+
+      // Upgrade Cards
       for (uint i = 0; i<5; i++) {
 
           /*
