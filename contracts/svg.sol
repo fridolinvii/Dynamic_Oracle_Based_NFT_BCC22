@@ -19,7 +19,7 @@ contract SVG is ERC1155, PlayerDetail {
 
     // Events
     event Minting(uint idx, address indexed nftOwner, uint numberOfPlayer);
-    
+
 
 
 
@@ -51,11 +51,11 @@ contract SVG is ERC1155, PlayerDetail {
 
       // Add players
 
-      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0,0,0);
-      _addPlayer("Noah Katterbach","Defence",0,0,0,0,0);
-      _addPlayer("Andy Pelmard","Defence",0,0,0,0,0);
-      _addPlayer("Pajtim Kasami","Midfield",0,0,0,0,0);
-      _addPlayer("Liam Millar","Offense",0,0,0,0,0);
+      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0,0,0,"Worms Weewax");
+      _addPlayer("Noah Katterbach","Defence",0,0,0,0,0,"Buttocks Winterkorn");
+      _addPlayer("Andy Pelmard","Defence",0,0,0,0,0,"Dicman Guster");
+      _addPlayer("Pajtim Kasami","Midfield",0,0,0,0,0,"TeeTee Endicott");
+      _addPlayer("Liam Millar","Offense",0,0,0,0,0,"Scut Sackrider");
 
       /* _addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
       _addPlayer("Noah Katterbach","Defence",766,8,1);
@@ -147,11 +147,11 @@ contract SVG is ERC1155, PlayerDetail {
 
 
 
-    function _addPlayer(string memory _playersName, string memory _position, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves ) internal {
+    function _addPlayer(string memory _playersName, string memory _position, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves, string memory _playersName_fake) internal {
 
         for (uint16 i = 0; i<4; i++) {
           uint16 _level = i;
-          _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName));
+          _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName, _playersName_fake));
           playerNameToIndex[_playersName].push(_playerDetail.length-1);
         }
     }
@@ -235,7 +235,8 @@ contract SVG is ERC1155, PlayerDetail {
         playerDetail memory _details = _playerDetail[_tokenId];
         string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
         output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked(
-            '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
+            '{"name": "', _playerDetail[_tokenId].playersName_fake, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
+            // '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
         ))))));
 
     }

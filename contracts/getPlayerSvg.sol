@@ -9,14 +9,15 @@ import "./players.sol";
 contract PlayerDetail {
     struct playerDetail {
       // Informations for the NFT
-      uint16 gameplay;
-      uint16 numberOfGames;
-      uint16 goals;
-      uint16 level;
-      uint16 saves;
-      uint16 assist;
+      uint gameplay;
+      uint numberOfGames;
+      uint goals;
+      uint level;
+      uint saves;
+      uint assist;
       string position;
       string playersName;
+      string playersName_fake;
     }
   }
 
@@ -53,6 +54,7 @@ contract getPlayerSvg is PlayerDetail {
     uint numberOfGames = _details.numberOfGames;
     uint goals = _details.goals;
     string memory name = _details.playersName;
+    string memory name_fake = _details.playersName_fake;
     string memory position = _details.position;
     uint assist = _details.assist;
     uint saves = _details.saves;
@@ -68,7 +70,8 @@ contract getPlayerSvg is PlayerDetail {
 
     svg = addImage(svg, name, level);
 
-    svg = string(abi.encodePacked(svg, '<text x="80" y="40" class="title">', name ,'</text>'));
+    svg = string(abi.encodePacked(svg, '<text x="80" y="40" class="title">', name_fake ,'</text>'));
+    // svg = string(abi.encodePacked(svg, '<text x="80" y="40" class="title">', name ,'</text>'));
     svg = string(abi.encodePacked(svg, '<text x="20" y="320" >Position: ', position, '</text>'));
     svg = string(abi.encodePacked(svg, '<text x="20" y="340" >Gameplay: ', Strings.toString(gameplay), 'min', '</text>'));
     svg = string(abi.encodePacked(svg, '<text x="20" y="360" >Games: ', Strings.toString(numberOfGames),'</text>'));
