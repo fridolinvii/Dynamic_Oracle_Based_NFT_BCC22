@@ -17,6 +17,10 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract SVG is ERC1155, PlayerDetail {
 
+
+    string public name = "FC-Chainlink Test";
+
+
     using Strings for uint; // Allows to convert uints to strings
 
     // Events
@@ -48,7 +52,7 @@ contract SVG is ERC1155, PlayerDetail {
     address[2] contractOfMintingProcess;
 
     constructor(address _getPlayerSVG) ERC1155("FC-Chainlink")  {
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x8Ee48713CB7895483a2303831c3dd059BAf485F1
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0x3C9d769fAf0085b98F2112117Ef124E14beB809d
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 
@@ -249,18 +253,20 @@ contract SVG is ERC1155, PlayerDetail {
         svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
               '{"trait_type": "Level","value": "', Strings.toString(_details.level), '"},'
               '{"trait_type": "Saves","value": "', Strings.toString(_details.saves), '"},'
-              '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"}'
+              '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"},'
+              '{"trait_type": "Score","value": "', Strings.toString(_getScoreFromPlayer(_tokenId)), '"}'
             ']'
             '}'));
         output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(svg2))));
                     //'"trait_type: "Name", "value": "', _playerDetail[_tokenId].playersName_fake, '"
             //' ]}}'
             // '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
-        
+
 
     }
 
   // Add score to each unique NFT
+
   function addScore(uint tokenId,uint _score) external mintingProcess() {
     score[tokenId] = _score;
   }
@@ -273,6 +279,11 @@ contract SVG is ERC1155, PlayerDetail {
     */
   function getScoreFromPlayer(uint tokenId)
         external view  mintingProcess() returns (uint _score) {
+          _score = _getScoreFromPlayer(tokenId);
+  }
+
+  function _getScoreFromPlayer(uint tokenId)
+        internal view returns (uint _score) {
           uint mult = 1;
           if (keccak256(abi.encodePacked("Defence"))==keccak256(abi.encodePacked(_playerDetail[tokenId].position))) {
             mult = 2;

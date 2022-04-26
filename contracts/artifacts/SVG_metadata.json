@@ -372,6 +372,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -714,11 +727,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
-			"keccak256": "0x253e70f46c8a2792255f2a4763b2c601b300c29a41a6dbb8b9bef8e7167a6512",
+			"keccak256": "0x556c41dd6fc2fd3b3fa0ece3c920dbf7cd14e5d4a476ad5d635923ae747a4e7f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://958f896b2e94bf2bd5bd526dd462b316885389b305a2b972ea730e014b8a0900",
-				"dweb:/ipfs/QmXPBXEPoeVwTCyHAMGjqDyU9P4Nyvq9SwbutcsynPGSd3"
+				"bzz-raw://b1e7f37718012234c5a5a6415e6cc3332be3d7f7b3e4e08d8949d766000da271",
+				"dweb:/ipfs/QmZxPgRsiFPUzzc5eFHu7kMjb5fazRR5dMcEcbHsjQR4kr"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
@@ -730,11 +743,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0xb1df46136b84dd65aaa561a0bb1f63568b1dd198d6b8c61532dfa9cfaa8ea604",
+			"keccak256": "0xcd262ceda25943d6f4e4d013c218a68ef1c9f3a0548e38bf7d7b3e6dfa5e39b5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8bc9a6172dbe87f8c4e6c4053127258b3a5e60b3a2fd52949d2e0ebe4a09f633",
-				"dweb:/ipfs/QmNynjrgJv6uWQRNFQJfSkqiVPfwkVZHPrPzt3Eek6Ukk8"
+				"bzz-raw://fca2fc1c31660a7c28ad25a3bc42947e56d75284a275d2991128020620a96500",
+				"dweb:/ipfs/QmUKKELJfvrdZYXbSxTB5HNDwRB1miLWgpLWJ7gBCiPRrD"
 			]
 		}
 	},

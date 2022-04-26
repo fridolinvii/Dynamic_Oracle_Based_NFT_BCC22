@@ -97,7 +97,7 @@ contract getPlayerSvg is PlayerDetail {
       svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Team NFT </text>'));
     }
     if ( (tokenId>2000) && (tokenId<10000001) ) {
-      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Score: ' , Strings.toString(score) , ' </text>'));
+      svg = string(abi.encodePacked(svg, '<text transform="translate(380,415) rotate(-90)" >Total Score: ' , Strings.toString(score) , ' </text>'));
     }
     //svg = string(abi.encodePacked(svg, '<text x="20" y="80">NFT ID: ', tokenId.toString(), '</text>'));
 
