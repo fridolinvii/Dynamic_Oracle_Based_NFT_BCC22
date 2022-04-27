@@ -47,15 +47,15 @@ def main():
 
     # Setup the Smart Contract
 
-    nk = NoahKatterbach.deploy({'from': me})
-    ap = AndyPelmard.deploy({'from': me})
-    pk = PajtimKasami.deploy({'from': me})
-    lm = LiamMillar.deploy({'from': me})
-    hl = HeinzLindner.deploy({'from': me})
+    nk = Player0.deploy({'from': me})
+    ap = Player1.deploy({'from': me})
+    pk = Player2.deploy({'from': me})
+    lm = Player3.deploy({'from': me})
+    hl = Player4.deploy({'from': me})
 
     getSVG = getPlayerSvg.deploy(ap.address, lm.address, nk.address, pk.address, hl.address, {'from': me})
 
-    c = SVG.deploy(getSVG.address, {'from': me})
+    c = createNFT.deploy(getSVG.address, "FC-Chainlink",{'from': me})
     m = mintingProcess.deploy(2103,c.address, {'from': me});
 
     ## Include interface
@@ -202,27 +202,27 @@ def main():
     print("END")
 
     # Show NFTs
-    # html = data2svg(c.uri(0))
+    html = data2svg(c.uri(0))
     # html += data2svg(c.uri(1))
     # html += data2svg(c.uri(2))
     # html += data2svg(c.uri(3))
     #
-    # html += data2svg(c.uri(4))
+    html += data2svg(c.uri(4))
     # html += data2svg(c.uri(5))
     # html += data2svg(c.uri(6))
     # html += data2svg(c.uri(7))
     #
-    # html += data2svg(c.uri(8))
+    html += data2svg(c.uri(8))
     # html += data2svg(c.uri(9))
     # html += data2svg(c.uri(10))
     # html += data2svg(c.uri(11))
     #
-    # html += data2svg(c.uri(12))
+    html += data2svg(c.uri(12))
     # html += data2svg(c.uri(13))
     # html += data2svg(c.uri(14))
     # html += data2svg(c.uri(15))
     #
-    # html += data2svg(c.uri(16))
+    html += data2svg(c.uri(16))
     # html += data2svg(c.uri(17))
     # html += data2svg(c.uri(18))
     # html += data2svg(c.uri(19))
@@ -230,7 +230,7 @@ def main():
 
 
     # Winner NFT
-    html = data2svg(c.uri(1001))
+    html += data2svg(c.uri(1001))
     html += data2svg(c.uri(1002))
     html += data2svg(c.uri(1003))
 

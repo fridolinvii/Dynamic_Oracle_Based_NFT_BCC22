@@ -15,77 +15,70 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 
 
-contract SVG is ERC1155, PlayerDetail {
+contract createNFT is ERC1155, PlayerDetail {
 
 
-    string public name = "FC-Chainlink Test";
+    // This gives the Name on Opensea
+    string public name;
 
-
-    using Strings for uint; // Allows to convert uints to strings
 
     // Events
     event Minting(uint idx, address indexed nftOwner, uint numberOfPlayer);
     ///////////////////////////////////////////////////////////////////////
 
 
-
-
-
     playerDetail[] _playerDetail;
 
+    // comunicates with getPlayerSvg.sol
     getPlayerSvg getPlayer;
+
     using Strings for uint; // Allows to convert uints to strings
 
-    string img_name = "FC-Chainlink";
-    string img_description = "Disclaimer: The scope of the project is within the Blockchain Challenge 2022 lecture offered by the University of Basel. The project will remain within the test net. The NFTs will never be sold nor is there any financial interest at hand by the owners or the course responsible."; // The images used are proprietary of https://www.fcb.ch . ";
-    bool flag; // Determines the background color of the NFT
-
-
-
-
+    // What will be written in the NFT description and its Name;
+    string img_name;
+    string img_description;
 
     mapping (string => uint[]) playerNameToIndex;
     mapping (uint => uint) distributionForRaffel;
-    mapping (uint => uint) score; // Shows scores on the unique NFTs
+    mapping (uint => uint) totalScore; // Shows scores on the unique NFTs from all NFTs the person owns
 
+    // addresses for owner and allow list
     address ownerOfContract;
     address[2] contractOfMintingProcess;
 
-    constructor(address _getPlayerSVG) ERC1155("FC-Chainlink")  {
+    constructor(address _getPlayerSVG, string memory _NFT_name) ERC1155("FC-Chainlink")  {
+
+      name = _NFT_name;
+
       getPlayer = getPlayerSvg(_getPlayerSVG); //0x3C9d769fAf0085b98F2112117Ef124E14beB809d
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 
       // Add players
+      _addPlayer("player0","Goalkeeper",0,0,0,0,0,"Worms Weewax");
+      _addPlayer("player1","Defence",0,0,0,0,0,"Buttocks Winterkorn");
+      _addPlayer("player2","Defence",0,0,0,0,0,"Dicman Guster");
+      _addPlayer("player3","Midfield",0,0,0,0,0,"TeeTee Endicott");
+      _addPlayer("player4","Offense",0,0,0,0,0,"Scut Sackrider");
 
-      _addPlayer("Heinz Lindner","Goalkeeper",0,0,0,0,0,"Worms Weewax");
-      _addPlayer("Noah Katterbach","Defence",0,0,0,0,0,"Buttocks Winterkorn");
-      _addPlayer("Andy Pelmard","Defence",0,0,0,0,0,"Dicman Guster");
-      _addPlayer("Pajtim Kasami","Midfield",0,0,0,0,0,"TeeTee Endicott");
-      _addPlayer("Liam Millar","Offense",0,0,0,0,0,"Scut Sackrider");
 
-      /* _addPlayer("Heinz Lindner","Goalkeeper",2489,26,0);
-      _addPlayer("Noah Katterbach","Defence",766,8,1);
-      _addPlayer("Andy Pelmard","Defence",2267,24,0);
-      _addPlayer("Pajtim Kasami","Midfield",1734,24,3);
-      _addPlayer("Liam Millar","Offense",1611,25,5); */
+      // update image infos
+      img_name = "FC-Chainlink";
+      img_description = "Disclaimer: The scope of the project is within the Blockchain Challenge 2022 lecture offered by the University of Basel. The project will remain within the test net. The NFTs will never be sold nor is there any financial interest at hand by the owners or the course responsible.";
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Owner Manager
     modifier onlyOwner() {
         require(ownerOfContract == msg.sender, "Not Owner of Contract");
         _;
     }
 
     modifier mintingProcess() {
-        require(contractOfMintingProcess[0] == msg.sender || contractOfMintingProcess[1] == msg.sender, "Not Owner of Contract");
+        require(contractOfMintingProcess[0] == msg.sender || contractOfMintingProcess[1] == msg.sender, "Not Permision to interact with createNFT");
         _;
     }
 
-
-
-    function updateDesciption(string memory _img_description) external onlyOwner() {
-      img_description = _img_description;
-    }
 
     function changeOwner(address _newOwner) external onlyOwner() {
       ownerOfContract = _newOwner;
@@ -98,93 +91,129 @@ contract SVG is ERC1155, PlayerDetail {
 
 
 
-    // _mintBatch dosen't show on opensea
-    /*function mintPlayer(uint[] memory idx, address nftOwner, uint[] memory numberOfPlayer) external mintingProcess() {
-      // requirement should be added that only player n%4 can be minted here
-        //_mint(nftOwner, idx, numberOfPlayer, "");
-      _mintBatch(nftOwner, idx, numberOfPlayer, "");
-    }*/
+
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Functions for the NFT
+
+    // update desciption of the nft
+    function updateDesciption(string memory _img_description) external onlyOwner() {
+      img_description = _img_description;
+    }
+
     function mintPlayer(uint idx, address nftOwner, uint numberOfPlayer) external mintingProcess(){
-      // requirement should be added that only player n%4 can be minted here
         _mint(nftOwner, idx, numberOfPlayer, "");
+        // _mintBatch dosen't show on opensea (at the time of testing)
 
         // Events
         emit Minting(idx, nftOwner, numberOfPlayer);
     }
 
-    function addDistribution(uint[] calldata _distributionForRaffel) external mintingProcess() {
-      uint count = 2001;
-      for (uint i = 0; i<_distributionForRaffel.length; i++) {
-        distributionForRaffel[count++] = _distributionForRaffel[i];
-      }
-
-    }
-
-
-
-
-
-
     function burnPlayer(uint _idx, address nftOwner, uint numberOfPlayer) external mintingProcess()  {
       _burn(nftOwner,_idx, numberOfPlayer);
     }
 
-    function upgradePlayer(string memory _playerName, uint _level, uint _numberOfUpgrades) external {
-      require(_level<3, "Wrong value. It should be 0<=level<3");
-      uint[] memory tokenId = playerNameToIndex[_playerName];
-      uint numberOfPlayerNeeded = 3*_numberOfUpgrades;
-      require( balanceOf(msg.sender, tokenId[_level])>=numberOfPlayerNeeded, "Insuficent Players to upgrade");
-      _burn(msg.sender,tokenId[_level],numberOfPlayerNeeded);
-      _mint(msg.sender,tokenId[_level]+1, _numberOfUpgrades, "");
-    }
 
-
-
-
-
+    // _getAddresses is from ERC1155_edited.sol, it gives back all of the potential owners of NFTs.
+    // This is important for the raffel
     function getAddresses() external view  mintingProcess() returns (address[] memory nft_addresses)  {
       nft_addresses = _getAddresses();
     }
 
 
+    // update uri function so it can use on chain data
+    function uri(uint tokenId) public view override returns (string memory output) {
+
+        uint star;
+        uint _tokenId;
+        string memory _img_description;
+
+        if (tokenId<1001) { //normal NFT
+          star = _playerDetail[tokenId].level;
+          _tokenId = tokenId;
+          _img_description = img_description;
+        }
 
 
+        // Note: all these unique NFT have a dynamic svg part, meaning it changes the image over time!
+
+       // These are the place 1-3 NFT
+        if (tokenId==1001) { // Place 1:
+          star = 3;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 1",star)))% 5);  // which image it chooses
+          _img_description = string(abi.encodePacked("Place 1! ", img_description));
+        } else if  (tokenId==1002) { // Place 2:
+          star = 2;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 2",star)))% 5); // which image it chooses
+          _img_description = string(abi.encodePacked("Place 2! ", img_description));
+        } else if (tokenId==1003) { // Place 3:
+          star = 1;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 3",star)))% 5); // which image it chooses
+          _img_description = string(abi.encodePacked("Place 3! ", img_description));
+        }
+
+        // Unique NFTs (gives total score of all player owned at time of raffle)
+        if ( (tokenId>2000) && (tokenId<10000001) ) {
+          star = 0;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5); // which image it chooses
+          _img_description = string(abi.encodePacked("Unique NFT! ", img_description));
+        }
+        // Team NFTs (gives total score of all player owned at time of raffle)
+        if ( (tokenId>10000000) ) {
+          star = 0;
+          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5); // which image it chooses
+          _img_description = string(abi.encodePacked("Team NFT! ", img_description));
+        }
 
 
+        uint _score = totalScore[tokenId];
+        playerDetail memory _details = _playerDetail[_tokenId];
+        string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
 
+        string memory svg2 = string(abi.encodePacked('{"name": "', _details.playersName_display, '",'
+            ' "description": "', _img_description, '",'
+            ' "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '",'
+            ' "attributes": ['));
+        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Name","value": "', _details.playersName_display, '"},'
+              '{"trait_type": "Position","value": "', _details.position, '"},'
+              '{"trait_type": "Gameplay","value": "', Strings.toString(_details.gameplay), '"},'
+              '{"trait_type": "Games","value": "', Strings.toString(_details.numberOfGames), '"},'));
+        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
+              '{"trait_type": "Level","value": "', Strings.toString(_details.level), '"},'
+              '{"trait_type": "Saves","value": "', Strings.toString(_details.saves), '"},'
+              '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"},'
+              '{"trait_type": "Score","value": "', Strings.toString(_getScoreFromPlayer(_tokenId)), '"}'
+            ']'
+            '}'));
 
+        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(svg2))));
+    }
 
-    function _addPlayer(string memory _playersName, string memory _position, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves, string memory _playersName_fake) internal {
-
+    ////////////////////////////////////////////////////////////////////////////
+    // Interaction with Players
+    function _addPlayer(string memory _playersName, string memory _position, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves, string memory _playersName_display) internal {
         for (uint16 i = 0; i<4; i++) {
           uint16 _level = i;
-          _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName, _playersName_fake));
+          _playerDetail.push(playerDetail(_gameplay,_numberOfGames,_goals,_level,_saves,_assist,_position,_playersName, _playersName_display));
           playerNameToIndex[_playersName].push(_playerDetail.length-1);
         }
     }
 
-
-
-
-
-
-    // function updatePlayer(string calldata _playerName, uint _gameplay, uint _numberOfGames, uint _goals) external mintingProcess()  {
     function updatePlayer(uint player, uint16 _gameplay, uint16 _numberOfGames, uint16 _goals, uint16 _assist, uint16 _saves) external mintingProcess()  {
-
       // player has nothing to do with tokenId!
       string memory _playerName;
       if (player == 4) {
-        _playerName = "Noah Katterbach";
+        _playerName = "player4";
       } else if (player == 3) {
-        _playerName = "Andy Pelmard";
+        _playerName = "player3";
       } else if (player == 2) {
-        _playerName = "Pajtim Kasami";
+        _playerName = "player2";
       } else if (player == 1) {
-        _playerName = "Liam Millar";
+        _playerName = "player1";
       } else if (player == 0) {
-        _playerName = "Heinz Lindner";
+        _playerName = "player0";
       }
-
 
       uint[] memory tokenId = playerNameToIndex[_playerName];
       for (uint i=0; i<tokenId.length; i++){
@@ -197,86 +226,23 @@ contract SVG is ERC1155, PlayerDetail {
     }
 
 
-    function uri(uint tokenId) public view override returns (string memory output) {
+    ////////////////////////////////////////////////////////////////////////////
+    // Data for the raffel and unique NFT
 
-        uint star;
-        uint _tokenId;
-        string memory _img_description;
-
-
-        if (tokenId<1001) { //normal NFT
-          star = _playerDetail[tokenId].level;
-          _tokenId = tokenId;
-          _img_description = img_description;
-        }
-
-       // These are the place 1-3 NFT
-        if (tokenId==1001) { // Place 1:
-          star = 3;
-          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 1",star)))% 5);
-          _img_description = string(abi.encodePacked("Place 1! ", img_description));
-        } else if  (tokenId==1002) { // Place 2:
-          star = 2;
-          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 2",star)))% 5);
-          _img_description = string(abi.encodePacked("Place 2! ", img_description));
-        } else if (tokenId==1003) { // Place 3:
-          star = 1;
-          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Place 3",star)))% 5);
-          _img_description = string(abi.encodePacked("Place 3! ", img_description));
-        }
-
-        if ( (tokenId>2000) && (tokenId<10000001) ) {
-          star = 0;
-          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5);
-          _img_description = string(abi.encodePacked("Unique NFT! ", img_description));
-        }
-        if ( (tokenId>10000000) ) {
-          star = 0;
-          _tokenId = 4*(uint(keccak256(abi.encodePacked(tokenId,block.timestamp,"Team NFT")))% 5);
-          _img_description = string(abi.encodePacked("Team NFT! ", img_description));
-        }
-
-        uint _score = score[tokenId];
-        // details calldata _details = details(gameplay[_tokenId],numberOfGames[_tokenId],goals[_tokenId],playersName[_tokenId], position[_tokenId],assist[_tokenId],saves[_tokenId]);
-
-        playerDetail memory _details = _playerDetail[_tokenId];
-        string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
-        // output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(string(abi.encodePacked('{"name": "', _playerDetail[_tokenId].playersName_fake, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'))))));
-        string memory svg2 = string(abi.encodePacked('{"name": "', _details.playersName_fake, '",'
-            ' "description": "', _img_description, '",'
-            ' "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '",'
-            ' "attributes": ['));
-        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Name","value": "', _details.playersName_fake, '"},'
-              '{"trait_type": "Position","value": "', _details.position, '"},'
-              '{"trait_type": "Gameplay","value": "', Strings.toString(_details.gameplay), '"},'
-              '{"trait_type": "Games","value": "', Strings.toString(_details.numberOfGames), '"},'));
-        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
-              '{"trait_type": "Level","value": "', Strings.toString(_details.level), '"},'
-              '{"trait_type": "Saves","value": "', Strings.toString(_details.saves), '"},'
-              '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"},'
-              '{"trait_type": "Score","value": "', Strings.toString(_getScoreFromPlayer(_tokenId)), '"}'
-            ']'
-            '}'));
-        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(svg2))));
-                    //'"trait_type: "Name", "value": "', _playerDetail[_tokenId].playersName_fake, '"
-            //' ]}}'
-            // '{"name": "', _playerDetail[_tokenId].playersName, '", "description": "', _img_description, '", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '"}'
-
-
+    function addDistribution(uint[] calldata _distributionForRaffel)
+                                                    external mintingProcess() {
+      uint count = 2001;
+      for (uint i = 0; i<_distributionForRaffel.length; i++) {
+        distributionForRaffel[count++] = _distributionForRaffel[i];
+      }
     }
 
-  // Add score to each unique NFT
-
-  function addScore(uint tokenId,uint _score) external mintingProcess() {
-    score[tokenId] = _score;
-  }
+    // Add score to each unique NFT
+    function addScore(uint tokenId,uint _totalScore) external mintingProcess() {
+      totalScore[tokenId] = _totalScore;
+    }
 
   // get score from player
-  /*
-    for all player (except defence) mult = 1, for defence mult = 2
-    score = 1 + numberOfGames + gameplay/10 + mult*(goals + assist) + saves/20
-
-    */
   function getScoreFromPlayer(uint tokenId)
         external view  mintingProcess() returns (uint _score) {
           _score = _getScoreFromPlayer(tokenId);

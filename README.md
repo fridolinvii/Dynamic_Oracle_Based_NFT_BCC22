@@ -26,19 +26,19 @@ The parameters are set so that it can be executed on the Rinkeby Network. If you
 
 ### Step 1
 Deploy the contracts with the svg information of the football players from *players.sol*:
-- NoahKatterbach
-- AndyPelmard
-- PajtimKasami
-- LiamMillar
-- HeinzLindner
+- Player0
+- Player1
+- Player2
+- Player3
+- Player4
 
 ### Step 2
 Deploy the contract in *getPlayerSvg.sol*, where the player statistic is implemented in the svg. Add during the deployment all the contract addresses of the players from Step 1.
 - getPlayerSvg
 
 ### Step 3
-Deploy the contract in *SVG.sol* with the address from Step 2. This setups the ERC1155 Tokens. And the interaction with the svg information.
-- SVG
+Deploy the contract in *createNFT.sol* with the address from Step 2. This setups the ERC1155 Tokens. And the interaction with the svg information.
+- createNFT
 
 ### Step 4
 Deploy the contract in *mintingProcess.sol* with the address from Step 3. After deploying the contract register your contract on https://vrf.chain.link/. If you want to use the VRF you need to add the subscriptionId.
@@ -51,7 +51,7 @@ Deploy the contract in *interface.sol* with the addresses of the contracts from 
 ### Step 6
 Give access to the contract so that they can communicate with each other.
 - *mintingProcess* run the function *changeInterfaceAddress("Interface address")*
-- *SVG* run the function *changeMintingProcess("mintingProcess address", "Interface address")*
+- *createNFT* run the function *changeMintingProcess("mintingProcess address", "Interface address")*
 
 ### Step 7
 Now you can buy and upgrade NFTs until the raffle in *Interface*. You can also send 0.1-0.3 ETH to the contract address from *Interface* to get the trading cards. To upgrade the trading cards, send 0 ETH to the contract address.

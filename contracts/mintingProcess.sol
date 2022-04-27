@@ -4,10 +4,14 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
-import "./svg.sol";
-// import "./translateNumber.sol";
+import "./createNFT.sol";
 
+
+// This contracts can get random number with VRF
+// Additional, the minting Process and the raffel work here
 contract mintingProcess is VRFConsumerBaseV2 {
+
+
 
 
   // Events
@@ -23,7 +27,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
 
   VRFCoordinatorV2Interface COORDINATOR;
-  SVG svg;
+  createNFT _createNFT;
   // translateNumber randNumber;
 
   // Your subscription ID.
@@ -77,16 +81,39 @@ contract mintingProcess is VRFConsumerBaseV2 {
   address[] winner;
 
 
-  constructor(uint64 subscriptionId, address svg_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
+  constructor(uint64 subscriptionId, address _createNFT_address) VRFConsumerBaseV2(vrfCoordinator) { //2103
     COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
-    svg = SVG(svg_address); //
-    // randNumber = translateNumber(translateNumber_address);
+    _createNFT = createNFT(_createNFT_address); //
     s_owner = msg.sender;
     interface_address = msg.sender;
     s_subscriptionId = subscriptionId;
   }
 
 
+  //////////////////////////////////////////////////////////////////////////////
+  // Owner Manager
+  function changeInterfaceAddress(address _interface_address) external onlyOwner() {
+    interface_address = _interface_address;
+  }
+
+  function changeOwner(address newOwner) external onlyOwner() {
+    s_owner = newOwner;
+  }
+
+
+  modifier interfaceAddress() {
+    require(msg.sender == interface_address);
+    _;
+  }
+
+
+  modifier onlyOwner() {
+    require(msg.sender == s_owner);
+    _;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Buy Players
 
   // Assumes the subscription is funded sufficiently.
   // get Random number, if it arrives minting will start in fulfillRandomWords
@@ -94,7 +121,8 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
 
     // Will revert if subscription is not set and funded.
-    if (vrf == true){ // use vrf
+    // Get random number if vrf=true
+    if (vrf == true){ // use vrf: will run fulfillRandomWords after 3 Blocks
         s_requestId = COORDINATOR.requestRandomWords(
           keyHash,
           s_subscriptionId,
@@ -103,82 +131,19 @@ contract mintingProcess is VRFConsumerBaseV2 {
           numWords
         );
     }
+
     // push new owner of NFT
     minting.push(_newOwner);
 
     // Compute automatically number of NFT bought, and return the rest
     numberOfPlayer.push(newPlayers);
 
-
+    // If vrf=false: it still buys player with "pseudo" random word
     if (vrf==false) { // simulate vrf
           s_randomWords = block.timestamp;
           _buyPlayer();
     }
 
-  }
-
-  function drawWinnerOfRaffel(uint[] calldata _distributionForRaffel, address[] calldata _nft_addresses, bool[] calldata has_team, bool vrf) external interfaceAddress() {
-
-      // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
-      numberOfPlayer.push(0);
-      distributionForRaffel = _distributionForRaffel;
-      nft_addresses = _nft_addresses;
-
-      uint mintingUnique = 2001;
-      uint mintingUnique_team = 10000001; // Big enough number, so that it has no conflict with Points of all token NFT
-      for (uint i = 0; i<nft_addresses.length; i++) {
-          // minting total Points of all tokens
-          svg.mintPlayer(mintingUnique+i,nft_addresses[i],1);
-          svg.addScore(mintingUnique+i,distributionForRaffel[i]);
-          emit UniqueNFT(mintingUnique+i, nft_addresses[i]);
-          if (has_team[i]==true) {
-            // Get an NFT, if owner of the team
-            svg.mintPlayer(mintingUnique_team,nft_addresses[i],1);
-            emit TeanNFT(mintingUnique_team, nft_addresses[i]);
-            mintingUnique_team += 1;
-          }
-        }
-
-
-
-      // Will revert if subscription is not set and funded.
-      if (vrf == true) {
-        s_requestId = COORDINATOR.requestRandomWords(
-          keyHash,
-          s_subscriptionId,
-          requestConfirmations,
-          callbackGasLimit,
-          numWords
-        );
-      } else {  // simulate vrf
-        s_randomWords = block.timestamp;
-        _drawWinnerOfRaffel();
-
-      }
-  }
-
-
-
-
-
-
-
-
-  // Here the random number is given back
-  // After getting random number minting starts
-  function fulfillRandomWords(
-    uint256, /* requestId */
-    uint256[] memory randomWords
-  ) internal override {
-    s_randomWords = randomWords[0];
-
-
-    if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
-      _drawWinnerOfRaffel();
-
-    } else { // numberOfPlayer[mintingCounter]>0
-      _buyPlayer();
-    }
   }
 
 
@@ -219,7 +184,7 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
     for (uint i = 0; i<player.length; i++){
       if (player[i]>0){
-        svg.mintPlayer(i*4,minting[mintingCounter],player[i]);
+        _createNFT.mintPlayer(i*4,minting[mintingCounter],player[i]);
         }
     }
 
@@ -228,6 +193,47 @@ contract mintingProcess is VRFConsumerBaseV2 {
 
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+  // Raffel
+
+  function drawWinnerOfRaffel(uint[] calldata _distributionForRaffel, address[] calldata _nft_addresses, bool[] calldata has_team, bool vrf) external interfaceAddress() {
+
+      // Here you say to fullfillRandomWords, that it should not mint but draw the raffel
+      numberOfPlayer.push(0);
+      distributionForRaffel = _distributionForRaffel;
+      nft_addresses = _nft_addresses;
+
+      uint mintingUnique = 2001;
+      uint mintingUnique_team = 10000001; // Big enough number, so that it has no conflict with Points of all token NFT
+      for (uint i = 0; i<nft_addresses.length; i++) {
+          // minting total Points of all tokens
+          _createNFT.mintPlayer(mintingUnique+i,nft_addresses[i],1);
+          _createNFT.addScore(mintingUnique+i,distributionForRaffel[i]);
+          emit UniqueNFT(mintingUnique+i, nft_addresses[i]);
+          if (has_team[i]==true) {
+            // Get an NFT, if owner of the team
+            _createNFT.mintPlayer(mintingUnique_team,nft_addresses[i],1);
+            emit TeanNFT(mintingUnique_team, nft_addresses[i]);
+            mintingUnique_team += 1;
+          }
+        }
+
+
+      // Will revert if subscription is not set and funded.
+      if (vrf == true) { // use vrf: will run fulfillRandomWords after 3 Blocks
+        s_requestId = COORDINATOR.requestRandomWords(
+          keyHash,
+          s_subscriptionId,
+          requestConfirmations,
+          callbackGasLimit,
+          numWords
+        );
+      } else {  // simulate vrf
+        s_randomWords = block.timestamp;
+        _drawWinnerOfRaffel();
+
+      }
+  }
 
 
   function _drawWinnerOfRaffel() internal {
@@ -260,17 +266,17 @@ contract mintingProcess is VRFConsumerBaseV2 {
         for (uint i=0; i<distributionForRaffel.length; i++) {
           sum_points += distributionForRaffel[i];
           if (sum_points>winner_1) {
-            svg.mintPlayer(1001,nft_addresses[i],1);
+            _createNFT.mintPlayer(1001,nft_addresses[i],1);
             winner_1 = max_points;
             emit WinnerNFT(1, 1001, nft_addresses[i]);
           }
           if (sum_points>winner_2) {
-            svg.mintPlayer(1002,nft_addresses[i],1);
+            _createNFT.mintPlayer(1002,nft_addresses[i],1);
             winner_2 = max_points;
             emit WinnerNFT(2, 1002, nft_addresses[i]);
           }
           if (sum_points>winner_3) {
-            svg.mintPlayer(1003,nft_addresses[i],1);
+            _createNFT.mintPlayer(1003,nft_addresses[i],1);
             winner_3 = max_points;
             emit WinnerNFT(3, 1003, nft_addresses[i]);
           }
@@ -280,30 +286,25 @@ contract mintingProcess is VRFConsumerBaseV2 {
     }
 
 
+  //////////////////////////////////////////////////////////////////////////////
+  // VRF internal functional
 
 
+  // Here the random number is given back
+  // After getting random number minting starts
+  function fulfillRandomWords(
+    uint256, /* requestId */
+    uint256[] memory randomWords
+  ) internal override {
+    s_randomWords = randomWords[0];
 
 
+    if(numberOfPlayer[mintingCounter]==0) { // This means that the raffel is done
+      _drawWinnerOfRaffel();
 
-  // Access to contract
-
-  function changeInterfaceAddress(address _interface_address) external onlyOwner() {
-    interface_address = _interface_address;
+    } else { // numberOfPlayer[mintingCounter]>0
+      _buyPlayer();
+    }
   }
 
-  function changeOwner(address newOwner) external onlyOwner() {
-    s_owner = newOwner;
-  }
-
-
-  modifier interfaceAddress() {
-    require(msg.sender == interface_address);
-    _;
-  }
-
-
-  modifier onlyOwner() {
-    require(msg.sender == s_owner);
-    _;
-  }
 }
