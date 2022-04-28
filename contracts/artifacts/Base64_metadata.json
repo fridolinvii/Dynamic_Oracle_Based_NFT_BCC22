@@ -21,7 +21,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": "Base64"
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/createNFT.sol": "Base64"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -131,28 +131,28 @@
 				"dweb:/ipfs/QmbQceZSxPnFjxtZSLyPoKKPxwJ6GyUAwtgEvxoehTJRmq"
 			]
 		},
-		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
-			"keccak256": "0x556c41dd6fc2fd3b3fa0ece3c920dbf7cd14e5d4a476ad5d635923ae747a4e7f",
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/createNFT.sol": {
+			"keccak256": "0x8e79204b736bf957538e001e2897f60c396562dd567b8ec0afa83a1357719698",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b1e7f37718012234c5a5a6415e6cc3332be3d7f7b3e4e08d8949d766000da271",
-				"dweb:/ipfs/QmZxPgRsiFPUzzc5eFHu7kMjb5fazRR5dMcEcbHsjQR4kr"
+				"bzz-raw://a258b96ebd3b1ca6c742d74a0f8e3e6cde41e50ec2cf07023698af9d53c58abe",
+				"dweb:/ipfs/QmRxpsmTr82RmTgK4LhH6Km8vwaHpCLQp4QJrLU6pgamZ4"
+			]
+		},
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
+			"keccak256": "0x07240110be7a754c620a73ccccfa1ae9ac863aab171fdc79a198f89572b3515a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c54250e26408abcfad535c0d760989a0dfe1c1548e90c5845cea586e4e72cfa4",
+				"dweb:/ipfs/QmTmnxKq3ukmgUFWC3U8TrYYSdpNzdAn1GVJZqdoqepzTi"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
-			"keccak256": "0xad28144931764b7751cb1f3f3ea46f3286103c0900a12367aaa179ca51a41f25",
+			"keccak256": "0x4c062b9af6f34c73f83065b2a04a87e9cce8399ca20d372e86ddb3f4d2edbdb5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c46037cd560d10b9214654f5642abdedb78d713ed0e7d852f8adc4ab2be6b62a",
-				"dweb:/ipfs/QmdNqjjmgUmtK9qU9hUH81q59FfJeRe9dRFAkxnvzTCbbK"
-			]
-		},
-		"Dynamic_Oracle_Based_NFT_BCC22/contracts/svg.sol": {
-			"keccak256": "0xcd262ceda25943d6f4e4d013c218a68ef1c9f3a0548e38bf7d7b3e6dfa5e39b5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://fca2fc1c31660a7c28ad25a3bc42947e56d75284a275d2991128020620a96500",
-				"dweb:/ipfs/QmUKKELJfvrdZYXbSxTB5HNDwRB1miLWgpLWJ7gBCiPRrD"
+				"bzz-raw://3950e167f1d60ff5af4896603a609dba2b7918120e77e42708eb643ba685a55c",
+				"dweb:/ipfs/Qmenh75dYLnAf6uYM8uQu4BobKXEMHgnXtTLgiDscLvVFR"
 			]
 		}
 	},

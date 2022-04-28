@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "level",
+						"type": "uint256"
+					}
+				],
+				"name": "getSVG",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "svg",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": "Player4"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Dynamic_Oracle_Based_NFT_BCC22/contracts/players.sol": {
+			"keccak256": "0x4c062b9af6f34c73f83065b2a04a87e9cce8399ca20d372e86ddb3f4d2edbdb5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3950e167f1d60ff5af4896603a609dba2b7918120e77e42708eb643ba685a55c",
+				"dweb:/ipfs/Qmenh75dYLnAf6uYM8uQu4BobKXEMHgnXtTLgiDscLvVFR"
+			]
+		}
+	},
+	"version": 1
+}
