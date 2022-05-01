@@ -171,15 +171,15 @@ contract createNFT is ERC1155, PlayerDetail {
         playerDetail memory _details = _playerDetail[_tokenId];
         string memory svg = getPlayer.getSVG(_details, star, tokenId, _score);
 
-        string memory svg2 = string(abi.encodePacked('{"name": "', _details.playersName_display, '",'
+        string memory json = string(abi.encodePacked('{"name": "', _details.playersName_display, '",'
             ' "description": "', _img_description, '",'
             ' "image": "data:image/svg+xml;base64,', Base64.encode(bytes(svg)), '",'
             ' "attributes": ['));
-        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Name","value": "', _details.playersName_display, '"},'
+        json = string(abi.encodePacked(json,'{"trait_type": "Name","value": "', _details.playersName_display, '"},'
               '{"trait_type": "Position","value": "', _details.position, '"},'
               '{"trait_type": "Gameplay","value": "', Strings.toString(_details.gameplay), '"},'
               '{"trait_type": "Games","value": "', Strings.toString(_details.numberOfGames), '"},'));
-        svg2 = string(abi.encodePacked(svg2,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
+        json = string(abi.encodePacked(json,'{"trait_type": "Goals","value": "', Strings.toString(_details.goals), '"},'
               '{"trait_type": "Level","value": "', Strings.toString(_details.level), '"},'
               '{"trait_type": "Saves","value": "', Strings.toString(_details.saves), '"},'
               '{"trait_type": "Assist","value": "', Strings.toString(_details.assist), '"},'
@@ -187,7 +187,7 @@ contract createNFT is ERC1155, PlayerDetail {
             ']'
             '}'));
 
-        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(svg2))));
+        output = string(abi.encodePacked('data:application/json;base64,', Base64.encode(bytes(json))));
     }
 
     ////////////////////////////////////////////////////////////////////////////
