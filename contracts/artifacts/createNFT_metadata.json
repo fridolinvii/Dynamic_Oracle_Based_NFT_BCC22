@@ -709,11 +709,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/createNFT.sol": {
-			"keccak256": "0x8e79204b736bf957538e001e2897f60c396562dd567b8ec0afa83a1357719698",
+			"keccak256": "0x93fc7c88f316bc054c0f1337a04d3a2a7bd53a900e12bb124258c965855d9b8b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a258b96ebd3b1ca6c742d74a0f8e3e6cde41e50ec2cf07023698af9d53c58abe",
-				"dweb:/ipfs/QmRxpsmTr82RmTgK4LhH6Km8vwaHpCLQp4QJrLU6pgamZ4"
+				"bzz-raw://31420bd34972b0180c06c7d8b4d5f2f0f0d0b55f6a751a17e9dd33e8d05fb06c",
+				"dweb:/ipfs/QmYf4uGQAiP7h49PFmT3PzSA3Q4t3DgrHvfz9hSbqKbhkz"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/getPlayerSvg.sol": {
