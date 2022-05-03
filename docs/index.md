@@ -44,7 +44,7 @@ Don't forget to checkout your upgraded cards! Did you get a gold star?
 ### Raffel
 Congratulation! As a proud owner of the NFT, you will participate in the raffle. It will be on the 7. April 2020 at 00:40! Good Luck!
 
-### Hint
+### Bonus
 Every 12h, the statistic of the players get updated. Refresh the metadata and see if the statistic of your player has changed!
 
  [![metadata](https://img.youtube.com/vi/xFVUJ8wf60o/0.jpg)](https://www.youtube.com/shorts/xFVUJ8wf60o "metadata")
