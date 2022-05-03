@@ -3,7 +3,7 @@
 
 ### Here, you can buy your own Trading Card NFT
 
-We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. 
+We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. Feel free to add me on [LinkedIn](https://www.linkedin.com/in/carlo-seppi-0a2222169/)!
 
 ### Step 1
 First, download [Metamask wallet](https://metamask.io/download/) and add a wallet. 
@@ -44,3 +44,6 @@ Congratulation! As a proud owner of the NFT, you will participate in the raffle.
 Every 12h, the statistic of the players get updated. Refresh the metadata and see if the statistic of your player has changed!
 
  [![metadata](https://img.youtube.com/vi/xFVUJ8wf60o/0.jpg)](https://www.youtube.com/shorts/xFVUJ8wf60o "metadata")
+
+
+
