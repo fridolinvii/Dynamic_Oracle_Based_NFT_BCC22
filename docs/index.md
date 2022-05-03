@@ -1,5 +1,5 @@
 ## Welcome to DYNAMICON
-![trading cards](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/blob/main/docs/tradingcards.png)
+![trading cards](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/blob/main/docs/tradingcards.jpg)
 
 ### Here, you can buy your own Trading Card NFT
 
