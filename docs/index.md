@@ -13,7 +13,7 @@ Importan: Don't do it on the mainnet! We have everything on to Rinkeby Testnet. 
 https://youtube.com/shorts/sJjles74GxI
 
 
-[![Rinkeby](https://img.youtube.com/vi/shorts/sJjles74GxI/0.jpg)](https://youtube.com/shorts/sJjles74GxI "Rinkeby")
+[![Rinkeby](https://img.youtube.com/vi/sJjles74GxI/0.jpg)](https://youtube.com/sJjles74GxI "Rinkeby")
 
 
 
