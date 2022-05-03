@@ -10,14 +10,13 @@ First download [Metamask wallet](https://metamask.io/download/) and add a wallet
 
 ### Step 2
 Importan: Don't do it on the mainnet! We have everything on to Rinkeby Testnet. Change the network on the Metamask wallet
-https://youtube.com/shorts/sJjles74GxI
 
+[![Rinkeby](https://img.youtube.com/vi/sJjles74GxI/0.jpg)](https://youtube.com/shorts/sJjles74GxI "Rinkeby")
 
-[![Rinkeby](https://img.youtube.com/vi/sJjles74GxI/0.jpg)](https://youtube.com/sJjles74GxI "Rinkeby")
+### Step 3
+Get some free ETH [here](https://rinkebyfaucet.com/). Or atleast free ETH from the testnet!
 
-
-
-All you need is to dowloa
+[![freeRinkeby](https://img.youtube.com/vi/lcODy0stpIA/0.jpg)](https://youtube.com/shorts/lcODy0stpIA "freeRinkeby")
 
 
 
