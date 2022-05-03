@@ -3,7 +3,7 @@
 
 #### Disclamer
 This project is from the Blockchain Challenge 2022 #BCC22 in cooperation with Chainlink.
-https://wwz.unibas.ch/de/dltfintech/blockchain-challenge/ . This contract is solely for private use.
+https://wwz.unibas.ch/de/dltfintech/blockchain-challenge/ . These contracts are solely for private use.
 If you have any questions, please contact one of the developer (#BCC22, Team 2 (Chainlink)).
 
 We create dynamic football trading cards. Which dynamically updates the statistics of the player.
