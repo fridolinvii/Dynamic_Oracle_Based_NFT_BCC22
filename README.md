@@ -1,4 +1,5 @@
 # Dynamic Oracle Based NFT BCC22
+![trading cards](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/blob/main/docs/tradingcards.png)
 
 #### Disclamer
 This project is from the Blockchain Challenge 2022 #BCC22 in cooperation with Chainlink.
