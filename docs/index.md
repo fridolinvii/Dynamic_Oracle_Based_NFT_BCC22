@@ -6,6 +6,7 @@ We will give you a short instruction, how to buy your own trading card NFT.
 
 ### Step 1
 First download [Metamask wallet](https://metamask.io/) and add a wallet. 
+
 [![Everything Is AWESOME](https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
 
 
