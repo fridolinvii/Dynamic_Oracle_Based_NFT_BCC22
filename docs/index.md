@@ -37,6 +37,8 @@ Finally... 10min are over... Now it is time to upgrade them! Send 0 ETH to the s
 
  [![upgrade](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/shorts/PFXJFCtHSoE "upgrade")
 
+Don't forget to checkout your upgraded cards! Did you get a gold star?
+
 ### Raffel
 Congratulation! As a proud owner of the NFT, you will participate in the raffle. It will be on the 7. April 2020 at 00:40! Good Luck!
 
