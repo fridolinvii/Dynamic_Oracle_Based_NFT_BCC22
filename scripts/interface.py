@@ -203,26 +203,26 @@ def main():
 
     # Show NFTs
     html = data2svg(c.uri(0))
-    # html += data2svg(c.uri(1))
-    # html += data2svg(c.uri(2))
-    # html += data2svg(c.uri(3))
+    html += data2svg(c.uri(1))
+    html += data2svg(c.uri(2))
+    html += data2svg(c.uri(3))
     #
-    html += data2svg(c.uri(4))
+    # html += data2svg(c.uri(4))
     # html += data2svg(c.uri(5))
     # html += data2svg(c.uri(6))
     # html += data2svg(c.uri(7))
     #
-    html += data2svg(c.uri(8))
+    # html = data2svg(c.uri(8))
     # html += data2svg(c.uri(9))
     # html += data2svg(c.uri(10))
     # html += data2svg(c.uri(11))
     #
-    html += data2svg(c.uri(12))
+    # html = data2svg(c.uri(12))
     # html += data2svg(c.uri(13))
     # html += data2svg(c.uri(14))
     # html += data2svg(c.uri(15))
-    #
-    html += data2svg(c.uri(16))
+    # #
+    # html += data2svg(c.uri(16))
     # html += data2svg(c.uri(17))
     # html += data2svg(c.uri(18))
     # html += data2svg(c.uri(19))
