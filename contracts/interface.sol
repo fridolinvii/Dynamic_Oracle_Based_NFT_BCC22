@@ -52,8 +52,8 @@ contract Interface is KeeperCompatibleInterface {
     // parameter for keeper
     uint startTime;
     uint startRaffel;
-    uint checkOracle;
-    uint lastOracle;
+    uint public checkOracle;
+    uint public lastOracle;
 
 
     // update player statistic for oracle simulation

@@ -178,6 +178,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "checkOracle",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "bytes",
@@ -209,6 +222,19 @@
 						"internalType": "address[]",
 						"name": "_nft_addresses",
 						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastOracle",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -434,11 +460,11 @@
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/interface.sol": {
-			"keccak256": "0xcb8b43d39b242e42557be8bf2894e2153bf6fa3588d745ee88d39a123ffe1858",
+			"keccak256": "0xdc9b75958f66f04bededb23dd186bf9d69f9b08ddf31e63ebc99c2ffe8f16c47",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4d2ddf9a68e50689fa76886e2849f9edbc1ab89fa58e7f5e349f5dce86cb6d39",
-				"dweb:/ipfs/QmVoz9bKXt5DxSd7nFGReeUCEfbeZYVAXgaF8pwwiiujgj"
+				"bzz-raw://440d61ced6f7dd912973d855df9ec83a109f3ebac5a7388c685a12c2a9daf79d",
+				"dweb:/ipfs/QmUhYt7tSGnmNKpdmqGtpjTboK6k54Ef35yrzWE2bjA8Ki"
 			]
 		},
 		"Dynamic_Oracle_Based_NFT_BCC22/contracts/mintingProcess.sol": {

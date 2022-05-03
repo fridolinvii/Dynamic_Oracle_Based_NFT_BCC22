@@ -50,7 +50,7 @@ contract createNFT is ERC1155, PlayerDetail {
 
       name = _NFT_name;
 
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x3C9d769fAf0085b98F2112117Ef124E14beB809d
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0x8c124d10f0b603ab3fc31a4db52636932ad48940 //
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 
