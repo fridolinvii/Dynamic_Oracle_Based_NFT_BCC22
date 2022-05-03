@@ -18,40 +18,29 @@ Get some free ETH [here](https://rinkebyfaucet.com/). Or atleast free ETH from t
 
 [![freeRinkeby](https://img.youtube.com/vi/lcODy0stpIA/0.jpg)](https://youtube.com/shorts/lcODy0stpIA "freeRinkeby")
 
+### Buy Trading Cards!
+Now with you can buy some trading cards! Just send 0.001-0.3 ETH to this Address
 
+- **0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0**
 
-You can use the [editor on GitHub](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+ [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/shorts/TGcIEi2sD6M "buy")
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Upgrade the Cards! 
+Wait for ~10min. While you are waiting take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)! 
 
-### Markdown
+Hint: You can look at your own trading cards on the link below. Just add your address!
+- [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x7d8415Eb7816CdDAef49D81F34Bb1d4c910c4DF7)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Finally... 10min are over... Now it is time to upgrade them! Send 0 ETH to the same address as before!
 
-```markdown
-Syntax highlighted code block
+- **0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0**
 
-# Header 1
-## Header 2
-### Header 3
+ [![upgrade](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/shorts/PFXJFCtHSoE "upgrade")
 
-- Bulleted
-- List
+### Raffel
+Congratulation! As a proud owner of the NFT you will participate at the raffle. It will be on the 7. April 2020 at 00:40! Good Luck!
 
-1. Numbered
-2. List
+### Hint
+Every 12h the statistic of the players get updated. Refresh the metadata and see if the statistic of your player has changed!
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+ [![metadata](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/shorts/PFXJFCtHSoE "metadata")
