@@ -1,13 +1,19 @@
 ## Welcome to DYNAMICON
 
+
 ### Here you can buy your own Trading Card NFT
 
-We will give you a short instruction, how to buy your own trading card NFT. 
+We will give you a short instruction, how to buy your own trading card NFT. Feel free to come to us, if you have any questions or you need help to buy your trading cards. 
 
 ### Step 1
-First download [Metamask wallet](https://metamask.io/) and add a wallet. 
+First download [Metamask wallet](https://metamask.io/download/) and add a wallet. 
 
-[![Everything Is AWESOME](https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
+### Step 2
+Importan: Don't do it on the mainnet! We have everything on to Rinkeby Testnet. Change the network on the Metamask wallet
+https://youtube.com/shorts/sJjles74GxI
+
+
+[![Rinkeby](https://img.youtube.com/vi/shorts/sJjles74GxI/0.jpg)](https://youtube.com/shorts/sJjles74GxI "Rinkeby")
 
 
 
