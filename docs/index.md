@@ -1,4 +1,10 @@
-## Welcome to GitHub Pages
+## Welcome to DYNAMICON
+
+## Here you can buy your own Trading Card NFT
+
+All you need is to dowloa
+
+
 
 You can use the [editor on GitHub](https://github.com/fridolinvii/Dynamic_Oracle_Based_NFT_BCC22/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
