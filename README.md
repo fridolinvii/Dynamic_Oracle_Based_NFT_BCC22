@@ -11,7 +11,7 @@ Having 3 of the same cards gives the option to upgrade the cards (up to 3 times)
 
 The trading cards are randomly selected. To ensure a fair random selection, we use the VRF2 from Chainlink (https://vrf.chain.link/).
 A keeper (https://keepers.chain.link/) automatically updates the statistic of the players.
-After a given time, the Keeper activates the Raffel. This deactivates the possibility to buy new trading cards and upgrading these.
+After a given time, the Keeper activates the Raffle. This deactivates the possibility to buy new trading cards and upgrading these.
 
 The raffle uses again VRF2 from Chainlink to ensure a fair random number. The raffle will give 3 Winners, which mints them a unique NFT.
 In addition, owning the whole team will give you a unique NFT, and all owners of the NFTs will get unique NFTs with their scores from all the collected players (the higher the score, the higher the chance to win the raffle).
