@@ -3,7 +3,9 @@
 
 ### Here, you can buy your own Trading Card NFT
 
-We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. Feel free to add me on [LinkedIn](https://www.linkedin.com/in/carlo-seppi-0a2222169/)!
+We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](app.satoruzen.xyz).
+
+Feel free to add me on [LinkedIn](https://www.linkedin.com/in/carlo-seppi-0a2222169/)!
 
 Hint: Press on the images. These are youtube videos, which show you what to do...
 
