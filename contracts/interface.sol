@@ -336,8 +336,9 @@ contract Interface is KeeperCompatibleInterface {
 
             for (uint i=0; i<time.length; i++) {
               uint16 randomNumber = uint16(uint((keccak256(abi.encodePacked(block.timestamp,i)))));
-              games[i] += randomNumber % 2;
-              if ((randomNumber % 2)>0) { // only update if the player plaid
+
+              if ((randomNumber % 100)>=25) { // only update if the player plaid  //~ updates 3 out of 4 times
+                  games[i] += 1;
                   time[i] += 30+(randomNumber % 60);
                   score[i] += (randomNumber % 3);
                   assist[i] += (randomNumber % 4);
@@ -352,6 +353,8 @@ contract Interface is KeeperCompatibleInterface {
             }
 
           }
+
+          // else { Here could come a link to an oracle}
 
           emit UpdatePlayer();
 

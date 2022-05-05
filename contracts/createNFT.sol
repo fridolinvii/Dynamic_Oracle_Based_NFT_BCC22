@@ -56,11 +56,11 @@ contract createNFT is ERC1155, PlayerDetail {
       contractOfMintingProcess[0] = msg.sender;
 
       // Add players
-      _addPlayer("player0","Goalkeeper",0,0,0,0,0,"Worms Weewax");
-      _addPlayer("player1","Defence",0,0,0,0,0,"Buttocks Winterkorn");
-      _addPlayer("player2","Defence",0,0,0,0,0,"Dicman Guster");
-      _addPlayer("player3","Midfield",0,0,0,0,0,"TeeTee Endicott");
-      _addPlayer("player4","Offense",0,0,0,0,0,"Scut Sackrider");
+      _addPlayer("player0","Goalkeeper",0,0,0,0,0,"Jonas Ruchti");
+      _addPlayer("player1","Defence",0,0,0,0,0,"Hans Furaha");
+      _addPlayer("player2","Defence",0,0,0,0,0,"Carlo Seppi");
+      _addPlayer("player3","Midfield",0,0,0,0,0,"Matthias Jeker");
+      _addPlayer("player4","Offense",0,0,0,0,0,"Kai Bajka");
 
 
       // update image infos
