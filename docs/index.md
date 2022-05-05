@@ -1,7 +1,7 @@
 ## Welcome to DYNAMICON
 [![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0 "trading cards")
 
-### Here, you can buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)
+### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)!
 
 We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
