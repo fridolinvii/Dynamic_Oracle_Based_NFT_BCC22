@@ -1,7 +1,7 @@
 ## Welcome to DYNAMICON
 [![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0 "trading cards")
 
-### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)!
+### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9a4630bC3df22efee6c2Ed9314D98Daf6f2A2E18)!
 
 We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
@@ -25,7 +25,7 @@ Get some free ETH [here](https://rinkebyfaucet.com/). Or at least free ETH from 
 ### Buy Trading Cards!
 Now you can buy some trading cards! Just send 0.001-0.3 ETH to this Address:
 
-- **0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0**
+- **0x00F0E90cc0d62E1B38A9c6d8770e3cdf945Eb046**
 
  [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/watch?v=TGcIEi2sD6M "buy")
 
@@ -33,11 +33,11 @@ Now you can buy some trading cards! Just send 0.001-0.3 ETH to this Address:
 Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)! 
 
 Hint: You can look at your own trading cards on the link below. Just add your Address!
-- [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x7d8415Eb7816CdDAef49D81F34Bb1d4c910c4DF7)
+- [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x384Ed23e6e9Bc755eFf6CeD657cacA4E54aB2D94)
 
 Finally... 10min are over... Now it is time to upgrade them! Send 0 ETH to the same Address as before!
 
-- **0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0**
+- **0x00F0E90cc0d62E1B38A9c6d8770e3cdf945Eb046**
 
  [![upgrade](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/watch?v=PFXJFCtHSoE "upgrade")
 
@@ -55,11 +55,11 @@ Every 12h, the statistic of the players get updated. Refresh the metadata and se
 ### Collections
 Smart Contract: 0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0
 
-[Raffel on 7. Mai at 00:40](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)
+[Raffel on 7. Mai 2022 at 00:40](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)
 
 
-Smart Contract: 
-[Raffel on ?. Mai at ?](https://rinkeby.looksrare.org/collections/0x9a4630bC3df22efee6c2Ed9314D98Daf6f2A2E18)
+Smart Contract: 0x00F0E90cc0d62E1B38A9c6d8770e3cdf945Eb046
+[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x9a4630bC3df22efee6c2Ed9314D98Daf6f2A2E18)
 
 
 
