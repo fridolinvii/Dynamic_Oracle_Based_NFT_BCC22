@@ -1,7 +1,7 @@
 ## Welcome to DYNAMICON
-[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a "trading cards")
+[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e "trading cards")
 
-### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)!
+### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)!
 
 We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
@@ -59,7 +59,7 @@ Smart Contract: 0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0
 
 
 Smart Contract: 0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434
-[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)
+[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)
 
 
 
