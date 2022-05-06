@@ -32,11 +32,11 @@ contract getPlayerSvg is PlayerDetail {
 
   //  player.sol contracts, where the svg image of the players saved
   constructor(address _Player0, address _Player1, address _Player2, address _Player3, address _Player4) {
-      player0 = Player0(_Player0); // 0x15791Fc4A8A07459aaE30F8BC06E6eC32b69F116
-      player1 = Player1(_Player1); // 0x1a936bDa2A108E7b5F68e829755BF31f9e10703C
-      player2 = Player2(_Player2); // 0xB0fea73C85EAA447b76f71D1AbBf3bFf5E900343
-      player3 = Player3(_Player3); // 0x9b3F68423fb2F9b43edDb7518A37394031F5e175
-      player4 = Player4(_Player4); // 0x7950a0c38a36E258F576664F5297F1Dbd14cB5e4
+      player0 = Player0(_Player0); // 0xdA529025AeE58534ed3e9C7CfD696c49C37b389c
+      player1 = Player1(_Player1); // 0x1b75Fdd456505aC8bE897209400c3946f825dEb8
+      player2 = Player2(_Player2); // 0xC5438ac234e01E224B863fdd1Fcc7D8830b241bD
+      player3 = Player3(_Player3); // 0xb693b9B927cA5054c69192069c25441d0a64B8B0
+      player4 = Player4(_Player4); // 0x441E53fA41977464d038Ec9f929FeB800654d56c
   }
 
 

@@ -47,13 +47,13 @@ def main():
 
     # Setup the Smart Contract
 
-    nk = Player0.deploy({'from': me})
-    ap = Player1.deploy({'from': me})
-    pk = Player2.deploy({'from': me})
-    lm = Player3.deploy({'from': me})
-    hl = Player4.deploy({'from': me})
+    p0 = Player0.deploy({'from': me})
+    p1 = Player1.deploy({'from': me})
+    p2 = Player2.deploy({'from': me})
+    p3 = Player3.deploy({'from': me})
+    p4 = Player4.deploy({'from': me})
 
-    getSVG = getPlayerSvg.deploy(ap.address, lm.address, nk.address, pk.address, hl.address, {'from': me})
+    getSVG = getPlayerSvg.deploy(p0.address, p1.address, p2.address, p3.address, p4.address, {'from': me})
 
     c = createNFT.deploy(getSVG.address, "FC-Chainlink",{'from': me})
     m = mintingProcess.deploy(2103,c.address, {'from': me});

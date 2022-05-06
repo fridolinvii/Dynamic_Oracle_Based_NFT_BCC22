@@ -51,15 +51,15 @@ contract createNFT is ERC1155, PlayerDetail {
       name = _NFT_name;
 
 
-      getPlayer = getPlayerSvg(_getPlayerSVG); //0x8c124d10f0b603ab3fc31a4db52636932ad48940 //
+      getPlayer = getPlayerSvg(_getPlayerSVG); //0xb77123e99FF8E6C103E6aA6f48F1837Ec9479D4e
       ownerOfContract = msg.sender;
       contractOfMintingProcess[0] = msg.sender;
 
       // Add players
-      _addPlayer("player0","Goalkeeper",0,0,0,0,0,"Jonas Ruchti");
-      _addPlayer("player1","Defence",0,0,0,0,0,"Hans Furaha");
-      _addPlayer("player2","Defence",0,0,0,0,0,"Carlo Seppi");
-      _addPlayer("player3","Midfield",0,0,0,0,0,"Matthias Jeker");
+      _addPlayer("player0","Goalkeeper",0,0,0,0,0,"Carlo Seppi");
+      _addPlayer("player1","Defence",0,0,0,0,0,"Jonas Ruchti");
+      _addPlayer("player2","Defence",0,0,0,0,0,"Matthias Jeker");
+      _addPlayer("player3","Midfield",0,0,0,0,0,"Hans Furaha");
       _addPlayer("player4","Offense",0,0,0,0,0,"Kai Bajka");
 
 
