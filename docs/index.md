@@ -1,7 +1,7 @@
 ## Welcome to DYNAMICON
-[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0 "trading cards")
+[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a "trading cards")
 
-### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9a4630bC3df22efee6c2Ed9314D98Daf6f2A2E18)!
+### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)!
 
 We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
@@ -30,7 +30,7 @@ Now you can buy some trading cards! Just send 0.001-0.3 ETH to this Address:
  [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/watch?v=TGcIEi2sD6M "buy")
 
 ### Upgrade the Cards! 
-Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)! 
+Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)! 
 
 Hint: You can look at your own trading cards on the link below. Just add your Address!
 - [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x2668553D4a8d7bAC032A2869E284764b9C4d0659)
@@ -59,7 +59,7 @@ Smart Contract: 0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0
 
 
 Smart Contract: 0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434
-[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x9a4630bC3df22efee6c2Ed9314D98Daf6f2A2E18)
+[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)
 
 
 
