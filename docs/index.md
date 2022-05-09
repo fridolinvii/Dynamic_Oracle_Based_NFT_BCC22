@@ -13,12 +13,12 @@ Hint: Press on the images. These are youtube videos, which show you what to do..
 First, download [Metamask wallet](https://metamask.io/download/) and add a wallet. 
 
 ### Step 2
-Important: Don't do it on the mainnet! We have everything on to Rinkeby Testnet. Change the network on the Metamask wallet.
+Important: Don't do it on the mainnet! We have everything on to Rinkeby Testnet. Change the network to *Rinkeby Test Network* on the Metamask wallet.
 
 [![Rinkeby](https://img.youtube.com/vi/sJjles74GxI/0.jpg)](https://youtube.com/watch?v=sJjles74GxI "Rinkeby")
 
 ### Step 3
-Get some free ETH [here](https://rinkebyfaucet.com/). Or at least free ETH from the testnet!
+Get some free ETH [here](https://rinkebyfaucet.com/). Or at least free ETH from the testnet! Copy your address and paste it on the website. They will send you the free ETH. Or come and talk to us.
 
 [![freeRinkeby](https://img.youtube.com/vi/lcODy0stpIA/0.jpg)](https://youtube.com/watch?v=lcODy0stpIA "freeRinkeby")
 
@@ -35,7 +35,7 @@ Wait for ~10min. While you are waiting, take a look at the trading cards [here](
 Hint: You can look at your own trading cards on the link below. Just add your Address!
 - [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x2668553D4a8d7bAC032A2869E284764b9C4d0659)
 
-Finally... 10min are over... Now it is time to upgrade them! Send 0 ETH to the same Address as before!
+Finally... 10min are over... Now, if you own more than three of the same cards, you can upgrade them! Send 0 ETH to the same Address as before!
 
 - **0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434**
 
