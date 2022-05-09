@@ -37,7 +37,7 @@ Hint: You can look at your own trading cards on the link below. Just add your Ad
 
 Finally... 10min are over... Now, if you own more than three of the same cards, you can upgrade them! Send 0 ETH to the same Address as before!
 
-- **0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434**
+- **0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434** 
 
  [![upgrade](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/watch?v=PFXJFCtHSoE "upgrade")
 
