@@ -3,7 +3,7 @@
 
 ### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)!
 
-We will give you a short instructions on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
+We will give you a short instruction on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
 Feel free to add us on LinkedIn: [Carlo Seppi](https://www.linkedin.com/in/carlo-seppi-0a2222169/), [Kai Mac Bajka](https://www.linkedin.com/mwlite/in/kai-mac-bajka), and [Jonas Ruchti](https://www.linkedin.com/mwlite/in/jonas-ruchti-a29042221)!
 
