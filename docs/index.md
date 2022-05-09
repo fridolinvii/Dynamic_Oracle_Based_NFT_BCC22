@@ -30,7 +30,7 @@ Now you can buy some trading cards! Just send 0.001-0.3 ETH to this Address:
  [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/watch?v=TGcIEi2sD6M "buy")
 
 ### Upgrade the Cards! 
-Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x9B38329fFAE524EC892cfF2dC68cAE5e2825892a)! 
+Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)! 
 
 Hint: You can look at your own trading cards on the link below. Just add your Address!
 - [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x2668553D4a8d7bAC032A2869E284764b9C4d0659)
