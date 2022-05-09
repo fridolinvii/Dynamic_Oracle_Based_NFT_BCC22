@@ -43,7 +43,7 @@ Finally... 10min are over... Now it is time to upgrade them! Send 0 ETH to the s
 
 Don't forget to checkout your upgraded cards! Did you get a gold star?
 
-### Raffel
+### Raffle
 Congratulation! As a proud owner of the NFT, you will participate in the raffle. It will be on the 11. Mai 2022 at 20:45! Good Luck!
 
 ### Bonus
@@ -55,12 +55,12 @@ Every hour, the statistic of the players get updated. Refresh the metadata and s
 ### Collections
 Smart Contract: 0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0
 
-[Raffel on 7. Mai 2022 at 00:40](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)
+[Raffle on 7. Mai 2022 at 00:40](https://rinkeby.looksrare.org/collections/0x9fcF85F43F110A479771181cd3A871Fa26A1a2E0)
 
 
 Smart Contract: 0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434
 
-[Raffel on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)
+[Raffle on 11. Mai 2022 at 20:45](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)
 
 
 
