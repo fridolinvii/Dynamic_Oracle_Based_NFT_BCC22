@@ -1,7 +1,7 @@
 ## Welcome to DYNAMICON
-[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e "trading cards")
+[![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0xE4F2e6E672baB63c64C6e0eF7f6b0F5d9Df4958C "trading cards")
 
-### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)!
+### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0xE4F2e6E672baB63c64C6e0eF7f6b0F5d9Df4958C)!
 
 We will give you a short instruction on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
@@ -31,10 +31,10 @@ Everything is done on the smart contract. We added the option that if you send s
  [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/watch?v=TGcIEi2sD6M "buy")
 
 ### Upgrade the Cards! 
-It will take some time for you to see your own trading cards. Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0x30380ab06387582527eC5bbfca8AFE0728Ba465e)! 
+It will take some time for you to see your own trading cards. Wait for ~10min. While you are waiting, take a look at the trading cards [here](https://rinkeby.looksrare.org/collections/0xE4F2e6E672baB63c64C6e0eF7f6b0F5d9Df4958C)! 
 
 Hint: You can look at your own trading cards on the link below. Just add your Address!
-- [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x2668553D4a8d7bAC032A2869E284764b9C4d0659)
+- [https://rinkeby.looksrare.org/accounts/0x...](https://rinkeby.looksrare.org/accounts/0x38ED1A8A0c79Febf4bcF96Cb130E954457Ab8171)
 
 Finally... 10min are over... If you own more than three of the same cards, you can upgrade them! If you want to upgrade all of your cards, send 0 ETH to the same Address as before!
 
@@ -54,9 +54,9 @@ Every hour, the statistic of the players get updated. Refresh the metadata and s
 
 
 ### Collections
-Smart Contract: 0x
+Smart Contract: 0xc16dAf952A6c7169e70782df299B3e3538a354EA
 
-[Raffle on 7. Mai 2022 at 00:40](https://rinkeby.looksrare.org/collections/)
+[Raffle on 16. Mai 2022 at 01:45](https://rinkeby.looksrare.org/collections/0xE4F2e6E672baB63c64C6e0eF7f6b0F5d9Df4958C)
 
 Smart Contract: 0x61E4f170A7a1Aad25D0dFE482A09cfB509D5B3A0
 
