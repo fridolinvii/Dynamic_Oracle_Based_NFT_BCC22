@@ -26,7 +26,7 @@ To buy the NFTs you will need some ETH. On the side [https://rinkebyfaucet.com/]
 ### Buy Trading Cards!
 Everything is done on the smart contract. We added the option that if you send some ETH to the smart contract, it will automatically mint the NFT for you. To do so, send 0.001-0.3 ETH to this Address (1 card costs 0.001 ETH):
 
-- **0x889B29F4bf79D765b7A5eE05Ed1d8CE3103Ac20B**
+- **0xbD1633Bb188C244e17BE19F5CD6dF08d44f9955E**
 
  [![buy](https://img.youtube.com/vi/TGcIEi2sD6M/0.jpg)](https://youtube.com/watch?v=TGcIEi2sD6M "buy")
 
@@ -38,7 +38,7 @@ Hint: You can look at your own trading cards on the link below. Just add your Ad
 
 Finally... 10min are over... If you own more than three of the same cards, you can upgrade them! If you want to upgrade all of your cards, send 0 ETH to the same Address as before!
 
-- **0x889B29F4bf79D765b7A5eE05Ed1d8CE3103Ac20B** 
+- **0xbD1633Bb188C244e17BE19F5CD6dF08d44f9955E** 
 
  [![upgrade](https://img.youtube.com/vi/PFXJFCtHSoE/0.jpg)](https://www.youtube.com/watch?v=PFXJFCtHSoE "upgrade")
 
@@ -54,7 +54,7 @@ Every hour, the statistic of the players get updated. Refresh the metadata and s
 
 
 ### Collections
-Smart Contract: 0x889B29F4bf79D765b7A5eE05Ed1d8CE3103Ac20B
+Smart Contract: 0xbD1633Bb188C244e17BE19F5CD6dF08d44f9955E
 
 [Raffle on 16. Mai 2022 at 02:00](https://rinkeby.looksrare.org/collections/0x3c007fffe1fc4dd5d0bc809c71f74e92ae80312b)
 
