@@ -1,9 +1,9 @@
 ## Welcome to DYNAMICON
 [![trading cards](https://fridolinvii.github.io/Dynamic_Oracle_Based_NFT_BCC22/tradingcards.png)](https://rinkeby.looksrare.org/collections/0x3c007fffe1fc4dd5d0bc809c71f74e92ae80312b "trading cards")
 
-### Buy your own [Trading Card NFT](https://rinkeby.looksrare.org/collections/0x3c007fffe1fc4dd5d0bc809c71f74e92ae80312b)!
+### Buy your own [Trading Card NFT](https://xd.adobe.com/view/76cc5181-6726-4fba-8e2a-932759707920-239f/)!
 
-We will give you a short instruction on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup [here](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
+We will give you a short instruction on buying your own trading card NFT. Feel free to come to us if you have any questions or need help buying your trading cards. You can check out our app mockup on [app.satoruzen.xyz](https://xd.adobe.com/view/94a83f2b-81cc-44cd-ac20-6ab4bc381dbf-c1fb/).
 
 Feel free to add us on LinkedIn: [Carlo Seppi](https://www.linkedin.com/in/carlo-seppi-0a2222169/), [Kai Mac Bajka](https://www.linkedin.com/mwlite/in/kai-mac-bajka), and [Jonas Ruchti](https://www.linkedin.com/mwlite/in/jonas-ruchti-a29042221)!
 
