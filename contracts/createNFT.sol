@@ -46,7 +46,7 @@ contract createNFT is ERC1155, PlayerDetail {
     address ownerOfContract;
     address[2] contractOfMintingProcess;
 
-    constructor(address _getPlayerSVG, string memory _NFT_name) ERC1155("FC-Chainlink")  {
+    constructor(address _getPlayerSVG, string memory _NFT_name) ERC1155("FC ChainLink")  {
 
       name = _NFT_name;
 
