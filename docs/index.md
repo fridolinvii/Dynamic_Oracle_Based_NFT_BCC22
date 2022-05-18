@@ -56,7 +56,7 @@ Every hour, the statistic of the players get updated. Refresh the metadata and s
 ### Collections
 Smart Contract: 0xbD1633Bb188C244e17BE19F5CD6dF08d44f9955E
 
-[Raffle on 16. Mai 2022 at 02:00](https://rinkeby.looksrare.org/collections/0x3c007fffe1fc4dd5d0bc809c71f74e92ae80312b)
+[Raffle on 16. Mai 2022 at 02:00](https://rinkeby.looksrare.org/collections/0x3c007fffe1fc4dd5d0bc809c71f74e92ae80312b) (Keeper)
 
 Smart Contract: 0xf4bb3200aB8409a6E04fF3B3CA4A5756CC570434
 
