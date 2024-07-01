@@ -23,7 +23,7 @@ It is also possible to run the Program without Keeper and VRF. Keeper can then b
 
 ## How to set up the contacts with Remix ##
 The parameters are set so that they can be executed on the Rinkeby Network. If you plan to use the services of Chainlink, you can get free LINK here: https://faucets.chain.link/rinkeby
-
+* Note: Rinkeby Network is down. You will need to find an alternative.
 
 ### Step 1
 Deploy the contracts with the SVG information of the football players from *players.sol*:
